@@ -44,11 +44,25 @@ if (!defined('ABSPATH')) {
     margin-right: auto !important;
     float: none !important;
 }
+<<<<<<< HEAD
 </style>
 
 <div class="wrap xtremecleans-admin-wrap">
     <div class="xtremecleans-page-header-nav">
         <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
+=======
+.xtremecleans-page-title {
+    font-size: 38px !important;
+    font-weight: 600 !important;
+    padding-top: 30px !important;
+}
+</style>
+
+<div class="wrap xtremecleans-admin-wrap">
+            <h1 class="xtremecleans-page-title"><?php echo esc_html(get_admin_page_title()); ?></h1>
+    <div class="xtremecleans-page-header-nav">
+
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         <div class="xtremecleans-page-nav">
             <a href="<?php echo esc_url(admin_url('admin.php?page=xtremecleans')); ?>" class="xtremecleans-nav-link"><?php esc_html_e('Dashboard', 'xtremecleans'); ?></a>
             <span class="xtremecleans-nav-separator">|</span>
@@ -84,6 +98,12 @@ if (!defined('ABSPATH')) {
         <a href="?page=xtremecleans-settings&tab=display" class="nav-tab <?php echo $active_tab === 'display' ? 'nav-tab-active' : ''; ?>">
             <?php esc_html_e('Display', 'xtremecleans'); ?>
         </a>
+<<<<<<< HEAD
+=======
+        <a href="?page=xtremecleans-settings&tab=travel" class="nav-tab <?php echo $active_tab === 'travel' ? 'nav-tab-active' : ''; ?>">
+            <?php esc_html_e('Travel Time', 'xtremecleans'); ?>
+        </a>
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
     </nav>
     
     <?php settings_errors(); ?>
@@ -102,6 +122,12 @@ if (!defined('ABSPATH')) {
         } elseif ($active_tab === 'email') {
             settings_fields('xtremecleans_settings_email');
             do_settings_sections('xtremecleans-settings-email');
+<<<<<<< HEAD
+=======
+        } elseif ($active_tab === 'travel') {
+            settings_fields('xtremecleans_settings_travel');
+            do_settings_sections('xtremecleans-settings-travel');
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         } else {
             settings_fields('xtremecleans_settings_display');
             do_settings_sections('xtremecleans-settings-display');

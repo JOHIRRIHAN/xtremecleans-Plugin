@@ -88,6 +88,11 @@ class XtremeCleans_Admin {
         add_action('wp_ajax_nopriv_xtremecleans_place_order', array($this, 'ajax_place_order'));
         add_action('wp_ajax_xtremecleans_get_booked_slots', array($this, 'ajax_get_booked_slots'));
         add_action('wp_ajax_nopriv_xtremecleans_get_booked_slots', array($this, 'ajax_get_booked_slots'));
+<<<<<<< HEAD
+=======
+        add_action('wp_ajax_xtremecleans_get_jobber_availability', array($this, 'ajax_get_jobber_availability'));
+        add_action('wp_ajax_nopriv_xtremecleans_get_jobber_availability', array($this, 'ajax_get_jobber_availability'));
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         
         // Orders AJAX handlers
         add_action('wp_ajax_xtremecleans_get_order_details', array($this, 'ajax_get_order_details'));
@@ -301,6 +306,32 @@ class XtremeCleans_Admin {
             'sanitize_callback' => 'xtremecleans_sanitize_textarea',
         ));
         
+<<<<<<< HEAD
+=======
+        // Travel Time (Google Maps) Settings
+        register_setting('xtremecleans_settings_travel', 'xtremecleans_google_api_key', array(
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+        register_setting('xtremecleans_settings_travel', 'xtremecleans_travel_enabled', array(
+            'sanitize_callback' => 'absint',
+        ));
+        register_setting('xtremecleans_settings_travel', 'xtremecleans_default_job_duration_minutes', array(
+            'sanitize_callback' => 'absint',
+        ));
+        register_setting('xtremecleans_settings_travel', 'xtremecleans_travel_fallback_message', array(
+            'sanitize_callback' => 'sanitize_textarea_field',
+        ));
+        register_setting('xtremecleans_settings_travel', 'xtremecleans_travel_fallback_phone', array(
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+        register_setting('xtremecleans_settings_travel', 'xtremecleans_slot_capacity_enabled', array(
+            'sanitize_callback' => 'absint',
+        ));
+        register_setting('xtremecleans_settings_travel', 'xtremecleans_slot_capacity', array(
+            'sanitize_callback' => array($this, 'sanitize_slot_capacity'),
+        ));
+        
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         // Add settings sections
         $this->register_settings_sections();
         $this->register_settings_fields();
@@ -346,6 +377,16 @@ class XtremeCleans_Admin {
             array($this, 'render_jobber_section'),
             'xtremecleans-settings-jobber'
         );
+<<<<<<< HEAD
+=======
+        
+        add_settings_section(
+            'xtremecleans_travel_section',
+            __('Travel Time (Google Maps)', 'xtremecleans'),
+            array($this, 'render_travel_section'),
+            'xtremecleans-settings-travel'
+        );
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
     }
     
     /**
@@ -404,6 +445,60 @@ class XtremeCleans_Admin {
             'xtremecleans_jobber_section'
         );
         
+<<<<<<< HEAD
+=======
+        // Travel Time Settings Fields
+        add_settings_field(
+            'xtremecleans_travel_enabled',
+            __('Enable 1-Hour Travel Rule', 'xtremecleans'),
+            array($this, 'render_travel_enabled_field'),
+            'xtremecleans-settings-travel',
+            'xtremecleans_travel_section'
+        );
+        add_settings_field(
+            'xtremecleans_google_api_key',
+            __('Google API Key', 'xtremecleans'),
+            array($this, 'render_google_api_key_field'),
+            'xtremecleans-settings-travel',
+            'xtremecleans_travel_section'
+        );
+        add_settings_field(
+            'xtremecleans_default_job_duration_minutes',
+            __('Default Job Duration (minutes)', 'xtremecleans'),
+            array($this, 'render_default_job_duration_field'),
+            'xtremecleans-settings-travel',
+            'xtremecleans_travel_section'
+        );
+        add_settings_field(
+            'xtremecleans_travel_fallback_message',
+            __('Message when slot blocked', 'xtremecleans'),
+            array($this, 'render_travel_fallback_message_field'),
+            'xtremecleans-settings-travel',
+            'xtremecleans_travel_section'
+        );
+        add_settings_field(
+            'xtremecleans_travel_fallback_phone',
+            __('Call/Text number in message', 'xtremecleans'),
+            array($this, 'render_travel_fallback_phone_field'),
+            'xtremecleans-settings-travel',
+            'xtremecleans_travel_section'
+        );
+        add_settings_field(
+            'xtremecleans_slot_capacity_enabled',
+            __('Enable Slot Capacity Limit', 'xtremecleans'),
+            array($this, 'render_slot_capacity_enabled_field'),
+            'xtremecleans-settings-travel',
+            'xtremecleans_travel_section'
+        );
+        add_settings_field(
+            'xtremecleans_slot_capacity',
+            __('Max Bookings Per Time Slot', 'xtremecleans'),
+            array($this, 'render_slot_capacity_field'),
+            'xtremecleans-settings-travel',
+            'xtremecleans_travel_section'
+        );
+        
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         // Payment Settings Fields
         add_settings_field(
             'xtremecleans_stripe_enabled',
@@ -1008,6 +1103,135 @@ class XtremeCleans_Admin {
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         dbDelta($sql);
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Sanitize service name values from request payload.
+     *
+     * @since 1.0.0
+     * @param mixed $raw_service_names Raw service name payload.
+     * @return array
+     */
+    private function sanitize_service_names_from_request($raw_service_names) {
+        $service_names = array();
+        $seen = array();
+        $values = is_array($raw_service_names) ? $raw_service_names : array($raw_service_names);
+
+        foreach ($values as $value) {
+            if (is_array($value) || is_object($value)) {
+                continue;
+            }
+
+            $service_name = sanitize_text_field($value);
+            $service_name = trim(preg_replace('/\s+/', ' ', $service_name));
+
+            if ($service_name === '') {
+                continue;
+            }
+
+            $key = strtolower($service_name);
+            if (isset($seen[$key])) {
+                continue;
+            }
+
+            $seen[$key] = true;
+            $service_names[] = $service_name;
+        }
+
+        return $service_names;
+    }
+
+    /**
+     * Sanitize ZIP code values from request payload.
+     *
+     * @since 1.0.0
+     * @param mixed $raw_zip_codes Raw ZIP payload (string or array).
+     * @return array
+     */
+    private function sanitize_zip_codes_from_request($raw_zip_codes) {
+        $valid = array();
+        $invalid = array();
+        $valid_seen = array();
+        $invalid_seen = array();
+        $tokens = array();
+        $values = is_array($raw_zip_codes) ? $raw_zip_codes : array($raw_zip_codes);
+
+        foreach ($values as $value) {
+            if (is_array($value) || is_object($value)) {
+                continue;
+            }
+
+            $parts = preg_split('/[\s,;]+/', (string) $value, -1, PREG_SPLIT_NO_EMPTY);
+            if (!empty($parts)) {
+                $tokens = array_merge($tokens, $parts);
+            }
+        }
+
+        foreach ($tokens as $token) {
+            $zip_code = sanitize_text_field($token);
+            $zip_code = trim($zip_code);
+
+            if ($zip_code === '') {
+                continue;
+            }
+
+            if (!preg_match('/^[0-9]{5}$/', $zip_code)) {
+                if (!isset($invalid_seen[$zip_code])) {
+                    $invalid_seen[$zip_code] = true;
+                    $invalid[] = $zip_code;
+                }
+                continue;
+            }
+
+            if (!isset($valid_seen[$zip_code])) {
+                $valid_seen[$zip_code] = true;
+                $valid[] = $zip_code;
+            }
+        }
+
+        return array(
+            'valid' => $valid,
+            'invalid' => $invalid,
+        );
+    }
+
+    /**
+     * Get all mapped service names for a ZIP code from ZIP reference table.
+     *
+     * @since 1.0.0
+     * @param string $zip_code ZIP code.
+     * @return array
+     */
+    private function get_service_names_by_zip_code($zip_code) {
+        global $wpdb;
+
+        $zip_code = sanitize_text_field($zip_code);
+        if (empty($zip_code) || !preg_match('/^[0-9]{5}$/', $zip_code)) {
+            return array();
+        }
+
+        $zip_table = $wpdb->prefix . 'xtremecleans_zip_reference';
+        $zip_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $zip_table));
+
+        if (!$zip_exists) {
+            return array();
+        }
+
+        $zip_table = esc_sql($zip_table);
+        $service_names = $wpdb->get_col($wpdb->prepare(
+            "SELECT DISTINCT service_name
+            FROM `{$zip_table}`
+            WHERE zip_code = %s
+            AND service_name IS NOT NULL
+            AND service_name != ''
+            ORDER BY service_name ASC",
+            $zip_code
+        ));
+
+        return $this->sanitize_service_names_from_request($service_names);
+    }
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
     
     /**
      * AJAX handler: Add new zip zone
@@ -1035,15 +1259,24 @@ class XtremeCleans_Admin {
         }
         
         // Get and sanitize form data
+<<<<<<< HEAD
         $service_name = isset($_POST['service_name']) ? sanitize_text_field($_POST['service_name']) : '';
         $zone_name = isset($_POST['zone_name']) ? sanitize_text_field($_POST['zone_name']) : '';
         $zip_code = isset($_POST['zip_code']) ? sanitize_text_field($_POST['zip_code']) : '';
+=======
+        $service_names = $this->sanitize_service_names_from_request(isset($_POST['service_name']) ? $_POST['service_name'] : array());
+        $zone_name = isset($_POST['zone_name']) ? sanitize_text_field($_POST['zone_name']) : '';
+        $zip_codes_result = $this->sanitize_zip_codes_from_request(isset($_POST['zip_code']) ? $_POST['zip_code'] : '');
+        $zip_codes = isset($zip_codes_result['valid']) ? $zip_codes_result['valid'] : array();
+        $invalid_zip_codes = isset($zip_codes_result['invalid']) ? $zip_codes_result['invalid'] : array();
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         $zone_area = isset($_POST['zone_area']) ? sanitize_text_field($_POST['zone_area']) : '';
         $county = isset($_POST['county']) ? sanitize_text_field($_POST['county']) : '';
         $state = isset($_POST['state']) ? sanitize_text_field($_POST['state']) : '';
         $service_fee = isset($_POST['service_fee']) ? floatval($_POST['service_fee']) : 0.00;
         
         // Validate required fields
+<<<<<<< HEAD
         if (empty($zone_name) || empty($zip_code)) {
             wp_send_json_error(array('message' => __('Zone Name and ZIP Code are required.', 'xtremecleans')));
         }
@@ -1086,6 +1319,96 @@ class XtremeCleans_Admin {
         wp_send_json_success(array(
             'message' => __('Zip zone added successfully.', 'xtremecleans'),
             'zone' => $new_zone,
+=======
+        if (empty($zone_name) || empty($zip_codes)) {
+            wp_send_json_error(array('message' => __('Zone Name and ZIP Code are required.', 'xtremecleans')));
+        }
+        
+        if (!empty($invalid_zip_codes)) {
+            wp_send_json_error(array(
+                'message' => sprintf(
+                    __('ZIP Code must be 5 digits. Invalid value(s): %s', 'xtremecleans'),
+                    implode(', ', $invalid_zip_codes)
+                )
+            ));
+        }
+        
+        $table_name_escaped = esc_sql($table_name);
+
+        // If no service is selected, allow saving ZIP/zone rows with empty service name.
+        $service_names_for_insert = !empty($service_names) ? $service_names : array('');
+        $inserted_zones = array();
+        $failed_count = 0;
+
+        foreach ($zip_codes as $zip_code) {
+            foreach ($service_names_for_insert as $service_name) {
+                $result = $wpdb->insert(
+                    $table_name,
+                    array(
+                        'service_name' => $service_name,
+                        'zone_name' => $zone_name,
+                        'zip_code' => $zip_code,
+                        'zone_area' => $zone_area,
+                        'county' => $county,
+                        'state' => $state,
+                        'service_fee' => $service_fee,
+                        'suggested_zone' => $zone_name,
+                        'created_at' => current_time('mysql'),
+                        'updated_at' => current_time('mysql'),
+                    ),
+                    array('%s', '%s', '%s', '%s', '%s', '%s', '%f', '%s', '%s', '%s')
+                );
+
+                if ($result === false) {
+                    $failed_count++;
+                    continue;
+                }
+
+                $new_zone = $wpdb->get_row($wpdb->prepare(
+                    "SELECT * FROM `{$table_name_escaped}` WHERE id = %d",
+                    $wpdb->insert_id
+                ), ARRAY_A);
+
+                if ($new_zone) {
+                    $inserted_zones[] = $new_zone;
+                }
+            }
+        }
+
+        if (empty($inserted_zones)) {
+            wp_send_json_error(array('message' => __('Failed to add zip zone.', 'xtremecleans')));
+        }
+
+        $inserted_count = count($inserted_zones);
+        $message = sprintf(
+            _n(
+                '%d ZIP zone added successfully.',
+                '%d ZIP zones added successfully.',
+                $inserted_count,
+                'xtremecleans'
+            ),
+            $inserted_count
+        );
+
+        if ($failed_count > 0) {
+            $message .= ' ' . sprintf(
+                _n(
+                    '%d row could not be saved.',
+                    '%d rows could not be saved.',
+                    $failed_count,
+                    'xtremecleans'
+                ),
+                $failed_count
+            );
+        }
+
+        wp_send_json_success(array(
+            'message' => $message,
+            'zone' => $inserted_zones[0],
+            'zones' => $inserted_zones,
+            'inserted_count' => $inserted_count,
+            'failed_count' => $failed_count,
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         ));
     }
     
@@ -1123,24 +1446,47 @@ class XtremeCleans_Admin {
         
         // Get and sanitize form data
         $zone_id = isset($_POST['zone_id']) ? intval($_POST['zone_id']) : 0;
+<<<<<<< HEAD
         $service_name = isset($_POST['service_name']) ? sanitize_text_field($_POST['service_name']) : '';
         $zone_name = isset($_POST['zone_name']) ? sanitize_text_field($_POST['zone_name']) : '';
         $zip_code = isset($_POST['zip_code']) ? sanitize_text_field($_POST['zip_code']) : '';
+=======
+        $service_names = $this->sanitize_service_names_from_request(isset($_POST['service_name']) ? $_POST['service_name'] : '');
+        $service_name = !empty($service_names) ? $service_names[0] : '';
+        $zone_name = isset($_POST['zone_name']) ? sanitize_text_field($_POST['zone_name']) : '';
+        $zip_codes_result = $this->sanitize_zip_codes_from_request(isset($_POST['zip_code']) ? $_POST['zip_code'] : '');
+        $zip_code = !empty($zip_codes_result['valid']) ? $zip_codes_result['valid'][0] : '';
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         $zone_area = isset($_POST['zone_area']) ? sanitize_text_field($_POST['zone_area']) : '';
         $county = isset($_POST['county']) ? sanitize_text_field($_POST['county']) : '';
         $state = isset($_POST['state']) ? sanitize_text_field($_POST['state']) : '';
         $service_fee = isset($_POST['service_fee']) ? floatval($_POST['service_fee']) : 0.00;
+<<<<<<< HEAD
+=======
+
+        if (!empty($zip_codes_result['invalid'])) {
+            wp_send_json_error(array(
+                'message' => sprintf(
+                    __('ZIP Code must be 5 digits. Invalid value(s): %s', 'xtremecleans'),
+                    implode(', ', $zip_codes_result['invalid'])
+                )
+            ));
+        }
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         
         // Validate required fields
         if (empty($zone_id) || empty($zone_name) || empty($zip_code)) {
             wp_send_json_error(array('message' => __('Zone ID, Zone Name and ZIP Code are required.', 'xtremecleans')));
         }
         
+<<<<<<< HEAD
         // Validate ZIP code format
         if (!preg_match('/^[0-9]{5}$/', $zip_code)) {
             wp_send_json_error(array('message' => __('ZIP Code must be 5 digits.', 'xtremecleans')));
         }
         
+=======
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         // Update zone - build data and format arrays
         $update_data = array(
             'service_name' => $service_name,
@@ -1745,6 +2091,10 @@ class XtremeCleans_Admin {
         delete_option('xtremecleans_jobber_refresh_token');
         delete_option('xtremecleans_jobber_token_expires');
         delete_option('xtremecleans_jobber_token_scopes'); // Also clear scope tracking
+<<<<<<< HEAD
+=======
+        delete_transient('xtremecleans_jobber_availability'); // Clear cached availability
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         
         xtremecleans_log('Jobber tokens and scopes cleared by user', 'info');
         
@@ -2098,6 +2448,7 @@ class XtremeCleans_Admin {
             $services = $data['data']['products']['nodes'];
             $service_names = array();
             
+<<<<<<< HEAD
             // Get ZIP code service mapping if available
             global $wpdb;
             $zip_table = $wpdb->prefix . 'xtremecleans_zip_reference';
@@ -2111,6 +2462,10 @@ class XtremeCleans_Admin {
                     $zip_code
                 ));
             }
+=======
+            // Get ZIP code service mappings if available.
+            $zip_service_names = $this->get_service_names_by_zip_code($zip_code);
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             
             foreach ($services as $service) {
                 $service_name = isset($service['name']) ? sanitize_text_field($service['name']) : '';
@@ -2119,11 +2474,24 @@ class XtremeCleans_Admin {
                     continue;
                 }
                 
+<<<<<<< HEAD
                 // If ZIP service name is set, only include matching services
                 if (!empty($zip_service_name)) {
                     if (stripos($service_name, $zip_service_name) !== false || 
                         stripos($zip_service_name, $service_name) !== false) {
                         $service_names[] = $service_name;
+=======
+                // If ZIP service mapping exists, include any matching mapped service.
+                if (!empty($zip_service_names)) {
+                    foreach ($zip_service_names as $zip_service_name) {
+                        if (
+                            stripos($service_name, $zip_service_name) !== false ||
+                            stripos($zip_service_name, $service_name) !== false
+                        ) {
+                            $service_names[] = $service_name;
+                            break;
+                        }
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                     }
                 } else {
                     // No ZIP mapping, include all services
@@ -2791,6 +3159,64 @@ class XtremeCleans_Admin {
         echo '<p class="description">' . esc_html__('Paste the Client Secret Jobber provided.', 'xtremecleans') . '</p>';
     }
     
+<<<<<<< HEAD
+=======
+    public function render_travel_section() {
+        echo '<p>' . esc_html__('Use Google Maps to enforce a 1-hour travel rule: a slot is only bookable if the crew can drive from this job to the next job in 60 minutes or less (in traffic). Requires Geocoding API and Distance Matrix API enabled in Google Cloud.', 'xtremecleans') . '</p>';
+    }
+    
+    public function render_travel_enabled_field() {
+        $value = get_option('xtremecleans_travel_enabled', '0');
+        echo '<label><input type="checkbox" name="xtremecleans_travel_enabled" value="1" ' . checked($value, '1', false) . ' /> ' . esc_html__('Enable travel time validation when placing orders', 'xtremecleans') . '</label>';
+    }
+    
+    public function render_google_api_key_field() {
+        $value = get_option('xtremecleans_google_api_key', '');
+        echo '<input type="text" name="xtremecleans_google_api_key" value="' . esc_attr($value) . '" class="regular-text code" autocomplete="off" />';
+        echo '<p class="description">' . esc_html__('Google API key with Geocoding API and Distance Matrix API enabled. Required for travel rule.', 'xtremecleans') . '</p>';
+    }
+    
+    public function render_default_job_duration_field() {
+        $value = get_option('xtremecleans_default_job_duration_minutes', '120');
+        echo '<input type="number" name="xtremecleans_default_job_duration_minutes" value="' . esc_attr($value) . '" min="30" max="480" step="15" class="small-text" /> ' . esc_html__('minutes', 'xtremecleans');
+        echo '<p class="description">' . esc_html__('Used to compute job end time E when checking travel to next job. Overridden by order duration if available.', 'xtremecleans') . '</p>';
+    }
+    
+    public function render_travel_fallback_message_field() {
+        $default = __('Online booking for that time is limited right now. Choose another time or call/text 410-819-2223.', 'xtremecleans');
+        $value = get_option('xtremecleans_travel_fallback_message', $default);
+        echo '<textarea name="xtremecleans_travel_fallback_message" rows="3" class="large-text">' . esc_textarea($value) . '</textarea>';
+        echo '<p class="description">' . esc_html__('Shown when the slot fails travel rule or Google API returns an error.', 'xtremecleans') . '</p>';
+    }
+    
+    public function render_travel_fallback_phone_field() {
+        $value = get_option('xtremecleans_travel_fallback_phone', '410-819-2223');
+        echo '<input type="text" name="xtremecleans_travel_fallback_phone" value="' . esc_attr($value) . '" class="regular-text" />';
+        echo '<p class="description">' . esc_html__('Phone number included in the fallback message (call/text).', 'xtremecleans') . '</p>';
+    }
+
+    public function render_slot_capacity_enabled_field() {
+        $value = get_option('xtremecleans_slot_capacity_enabled', '0');
+        echo '<label><input type="checkbox" name="xtremecleans_slot_capacity_enabled" value="1" ' . checked($value, '1', false) . ' /> ' . esc_html__('Allow multiple bookings in the same time slot', 'xtremecleans') . '</label>';
+        echo '<p class="description">' . esc_html__('When disabled, only 1 booking is allowed per slot. When enabled, use the limit below.', 'xtremecleans') . '</p>';
+    }
+
+    public function render_slot_capacity_field() {
+        $value = absint(get_option('xtremecleans_slot_capacity', 1));
+        if ($value < 1) {
+            $value = 1;
+        }
+        echo '<input type="number" name="xtremecleans_slot_capacity" value="' . esc_attr($value) . '" min="1" max="100" step="1" class="small-text" /> ';
+        echo '<span>' . esc_html__('bookings per slot', 'xtremecleans') . '</span>';
+        echo '<p class="description">' . esc_html__('Examples: 1 = only one booking, 3 = up to three bookings, 10 = up to ten bookings in the same arrival window.', 'xtremecleans') . '</p>';
+    }
+
+    public function sanitize_slot_capacity($value) {
+        $capacity = absint($value);
+        return $capacity > 0 ? $capacity : 1;
+    }
+    
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
     // Stripe Payment Settings Field Renderers
     public function render_stripe_enabled_field() {
         $value = xtremecleans_get_option('stripe_enabled', '0');
@@ -3253,6 +3679,11 @@ class XtremeCleans_Admin {
             ),
             ARRAY_A
         );
+<<<<<<< HEAD
+=======
+        $service_names = $this->get_service_names_by_zip_code($zip_code);
+        $primary_service_name = count($service_names) === 1 ? $service_names[0] : '';
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         
         if ($result) {
             wp_send_json_success(array(
@@ -3262,7 +3693,12 @@ class XtremeCleans_Admin {
                 'service_fee' => isset($result['service_fee']) ? $result['service_fee'] : '0.00',
                 'city' => $result['city'] ? $result['city'] : '',
                 'state' => $result['state'] ? $result['state'] : '',
+<<<<<<< HEAD
                 'service_name' => isset($result['service_name']) ? $result['service_name'] : '',
+=======
+                'service_name' => $primary_service_name,
+                'service_names' => $service_names,
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             ));
         } else {
             wp_send_json_error(array('message' => __('ZIP code not found in database.', 'xtremecleans')));
@@ -3308,6 +3744,11 @@ class XtremeCleans_Admin {
             ),
             ARRAY_A
         );
+<<<<<<< HEAD
+=======
+        $service_names = $this->get_service_names_by_zip_code($zip_code);
+        $primary_service_name = count($service_names) === 1 ? $service_names[0] : '';
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         
         if ($result) {
             // Match found - proceed to next step
@@ -3316,7 +3757,12 @@ class XtremeCleans_Admin {
                 'zip_code' => $result['zip_code'],
                 'zone_name' => isset($result['zone_name']) ? $result['zone_name'] : '',
                 'zone_area' => isset($result['zone_area']) && $result['zone_area'] ? $result['zone_area'] : '',
+<<<<<<< HEAD
                 'service_name' => isset($result['service_name']) ? $result['service_name'] : '',
+=======
+                'service_name' => $primary_service_name,
+                'service_names' => $service_names,
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             ));
         } else {
             // No match found - show lead form
@@ -3958,6 +4404,7 @@ class XtremeCleans_Admin {
         global $wpdb;
         $table_name = $wpdb->prefix . 'xtremecleans_orders';
         
+<<<<<<< HEAD
         // One booking per slot: reject if this date+time is already booked
         $existing = $wpdb->get_var($wpdb->prepare(
             "SELECT id FROM {$table_name} WHERE appointment_date = %s AND appointment_time = %s LIMIT 1",
@@ -3968,6 +4415,26 @@ class XtremeCleans_Admin {
             wp_send_json_error(array('message' => __('This time slot is no longer available. Please choose another.', 'xtremecleans')));
         }
         
+=======
+        // Capacity check per slot (1 when disabled; configurable when enabled).
+        $slot_capacity_enabled = absint(get_option('xtremecleans_slot_capacity_enabled', 0)) === 1;
+        $slot_capacity = $slot_capacity_enabled ? absint(get_option('xtremecleans_slot_capacity', 1)) : 1;
+        if ($slot_capacity < 1) {
+            $slot_capacity = 1;
+        }
+        $existing_count = $this->get_slot_occupancy_count($appointment_date, $appointment_time);
+        if ($existing_count >= $slot_capacity) {
+            wp_send_json_error(array('message' => __('This time slot is no longer available. Please choose another.', 'xtremecleans')));
+        }
+        
+        // Travel time rule: crew must reach next job in ≤ 60 min (Google Distance Matrix, duration_in_traffic)
+        $duration_minutes = isset($totals['duration_minutes']) ? intval($totals['duration_minutes']) : 0;
+        $travel_check = $this->validate_travel_time_for_order($customer, $appointment_date, $appointment_time, $duration_minutes);
+        if (is_wp_error($travel_check)) {
+            wp_send_json_error(array('message' => $travel_check->get_error_message()));
+        }
+        
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         $insert_data = array(
             'first_name'        => $first_name,
             'last_name'         => $last_name,
@@ -4017,6 +4484,16 @@ class XtremeCleans_Admin {
         
         $order_id = $wpdb->insert_id;
         
+<<<<<<< HEAD
+=======
+        // Re-check after insert (race: another customer may have taken the last seat).
+        $occupancy_after = $this->get_slot_occupancy_count($appointment_date, $appointment_time);
+        if ($occupancy_after > $slot_capacity) {
+            $wpdb->delete($table_name, array('id' => $order_id), array('%d'));
+            wp_send_json_error(array('message' => __('This time slot filled up while you were booking. Please choose another.', 'xtremecleans')));
+        }
+        
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         // IMPORTANT: Payment Flow Logic
         // If Stripe is enabled and configured:
         // 1. Order is saved with payment_status = 'pending'
@@ -4064,8 +4541,842 @@ class XtremeCleans_Admin {
     }
     
     /**
+<<<<<<< HEAD
      * AJAX: Get booked appointment slots for a date range (one slot = one booking).
      * Used by frontend calendar to mark already-booked slots as unavailable.
+=======
+     * Get the business timezone for Jobber time conversions.
+     * Priority: 1) Plugin setting, 2) Infer from Jobber job data, 3) WordPress timezone.
+     *
+     * Jobber returns all times in UTC. If WordPress timezone is UTC/+00:00 (often misconfigured),
+     * we auto-detect the real business timezone by analyzing full-day job patterns
+     * (e.g., startAt 05:00Z + endAt 04:59:59Z next day = midnight-to-midnight at UTC-5 = Eastern Time).
+     *
+     * @since 1.1.0
+     * @param array|null $jobs Optional pre-fetched jobs array to analyze
+     * @return DateTimeZone The business timezone
+     */
+    private function get_business_timezone($jobs = null) {
+        // 1) Check plugin setting override
+        $saved_tz = get_option('xtremecleans_business_timezone', '');
+        if (!empty($saved_tz)) {
+            try {
+                return new DateTimeZone($saved_tz);
+            } catch (Exception $e) {
+                // Invalid saved timezone, continue to auto-detect
+            }
+        }
+        
+        // 2) Check if WordPress timezone is properly configured (not UTC)
+        $wp_tz = wp_timezone();
+        $wp_tz_name = $wp_tz->getName();
+        
+        // If WP timezone is set to a real timezone (not UTC/+00:00), use it
+        if ($wp_tz_name !== 'UTC' && $wp_tz_name !== '+00:00' && $wp_tz_name !== 'Etc/UTC') {
+            return $wp_tz;
+        }
+        
+        // 3) Check cached auto-detected timezone
+        $cached_tz = get_transient('xtremecleans_detected_timezone');
+        if ($cached_tz !== false) {
+            try {
+                return new DateTimeZone($cached_tz);
+            } catch (Exception $e) {
+                // Fall through
+            }
+        }
+        
+        // 4) Auto-detect from Jobber job data
+        // Full-day jobs in Jobber have startAt at midnight local time and endAt at 23:59:59 local time.
+        // So startAt hour in UTC tells us the UTC offset: e.g., 05:00Z = midnight at UTC-5 (Eastern)
+        if (!empty($jobs)) {
+            $offsets = array();
+            foreach ($jobs as $job) {
+                if (empty($job['startAt']) || empty($job['endAt'])) {
+                    continue;
+                }
+                try {
+                    $start = new DateTime($job['startAt']);
+                    $end = new DateTime($job['endAt']);
+                } catch (Exception $e) {
+                    continue;
+                }
+                
+                // Check if this is a full-day job (duration ≈ 24 hours / 23:59:59)
+                $diff_seconds = $end->getTimestamp() - $start->getTimestamp();
+                if ($diff_seconds >= 86399 && $diff_seconds <= 86400) { // 23:59:59 to 24:00:00
+                    $utc_start_hour = (int) $start->format('H');
+                    $utc_start_min = (int) $start->format('i');
+                    
+                    // Only trust whole-hour or half-hour offsets
+                    if ($utc_start_min === 0 || $utc_start_min === 30) {
+                        $offset_hours = -($utc_start_hour + ($utc_start_min / 60));
+                        // Adjust for negative offsets that wrap (e.g., hour 23 = UTC+1)
+                        if ($offset_hours < -12) {
+                            $offset_hours += 24;
+                        }
+                        $offsets[] = $offset_hours;
+                    }
+                }
+            }
+            
+            if (!empty($offsets)) {
+                // Use the most common offset
+                $counts = array_count_values(array_map(function($o) { return (string) $o; }, $offsets));
+                arsort($counts);
+                $best_offset = (float) array_key_first($counts);
+                
+                // Convert offset to timezone string
+                $offset_sign = $best_offset >= 0 ? '+' : '-';
+                $abs_offset = abs($best_offset);
+                $offset_h = (int) floor($abs_offset);
+                $offset_m = (int) (($abs_offset - $offset_h) * 60);
+                $tz_string = sprintf('%s%02d:%02d', $offset_sign, $offset_h, $offset_m);
+                
+                xtremecleans_log('Auto-detected business timezone from Jobber: UTC' . $tz_string . ' (from ' . count($offsets) . ' full-day jobs)', 'info');
+                
+                // Cache for 24 hours
+                set_transient('xtremecleans_detected_timezone', $tz_string, DAY_IN_SECONDS);
+                
+                // Also save as plugin setting so it persists
+                update_option('xtremecleans_business_timezone', $tz_string);
+                
+                try {
+                    return new DateTimeZone($tz_string);
+                } catch (Exception $e) {
+                    // Fall through
+                }
+            }
+        }
+        
+        // 5) Final fallback: WordPress timezone (even if UTC)
+        return $wp_tz;
+    }
+    
+    /**
+     * Ensure the Jobber access token is fresh. Refreshes if expired or about to expire.
+     *
+     * @since 1.1.0
+     * @return string The current (possibly refreshed) access token, or empty string on failure
+     */
+    private function ensure_fresh_jobber_token() {
+        // Per-request cache: avoid refreshing multiple times in one page load
+        static $cached_token = null;
+        if ($cached_token !== null) {
+            return $cached_token;
+        }
+        
+        $access_token = get_option('xtremecleans_jobber_access_token', '');
+        if (empty($access_token)) {
+            $cached_token = '';
+            return '';
+        }
+        
+        $token_expires = (int) get_option('xtremecleans_jobber_token_expires', 0);
+        
+        // Refresh if: expiry unknown (0/not set), already expired, or expiring within 5 minutes
+        // When expiry is 0, we don't know when it expires — refresh to get a proper expiry set
+        $needs_refresh = ($token_expires === 0) || ($token_expires < time() + 300);
+        
+        if ($needs_refresh) {
+            xtremecleans_log('Jobber token needs refresh (expires=' . $token_expires . ', now=' . time() . ')', 'info');
+            
+            $xtremecleans = XtremeCleans::get_instance();
+            $frontend = isset($xtremecleans->frontend) ? $xtremecleans->frontend : null;
+            
+            if ($frontend && method_exists($frontend, 'refresh_access_token')) {
+                $refresh_result = $frontend->refresh_access_token();
+                if (is_wp_error($refresh_result)) {
+                    xtremecleans_log('Jobber token refresh failed: ' . $refresh_result->get_error_message(), 'error');
+                    // Return current token anyway — it might still work
+                    $cached_token = $access_token;
+                    return $access_token;
+                } else {
+                    xtremecleans_log('Jobber token refreshed successfully', 'info');
+                    // Re-read refreshed token from DB
+                    $access_token = get_option('xtremecleans_jobber_access_token', '');
+                }
+            }
+        }
+        
+        $cached_token = $access_token;
+        return $access_token;
+    }
+    
+    /**
+     * Fetch appointments from Jobber for a date range
+     * Maps Jobber job times to plugin's 3-window slots (8-9 AM, 11-2 PM, 2:30-5 PM)
+     *
+     * @since 1.1.0
+     * @param string $start_date Date in YYYY-MM-DD format
+     * @param string $end_date Date in YYYY-MM-DD format
+     * @param array  $time_windows Array of time windows to map jobs to (if empty, uses defaults from get_jobber_availability)
+     * @return array Booked slots array with 'date' and 'time' keys
+     */
+    private function get_jobber_appointments_for_date_range($start_date, $end_date, $time_windows = array()) {
+        $booked_slots = array();
+        
+        // Check if Jobber is configured
+        if (!xtremecleans_is_api_configured()) {
+            xtremecleans_log('Jobber not configured, skipping Jobber appointments fetch', 'debug');
+            return $booked_slots;
+        }
+        
+        // Get fresh token (auto-refresh if expired)
+        $access_token = $this->ensure_fresh_jobber_token();
+        if (empty($access_token)) {
+            xtremecleans_log('No Jobber access token found', 'debug');
+            return $booked_slots;
+        }
+        
+        // If no time windows provided, use default fallback
+        if (empty($time_windows)) {
+            $time_windows = array(
+                array('start' => 8, 'end' => 9, 'label' => '8:00 AM - 9:00 AM'),
+                array('start' => 11, 'end' => 14, 'label' => '11:00 AM - 2:00 PM'),
+                array('start' => 14.5, 'end' => 17, 'label' => '2:30 PM - 5:00 PM'),
+            );
+        }
+        
+        $graphql_endpoint = 'https://api.getjobber.com/api/graphql';
+        $api_version = apply_filters('xtremecleans_jobber_api_version', '2025-04-16');
+        
+        // Convert dates to ISO 8601 format
+        $start_datetime = $start_date . 'T00:00:00Z';
+        $end_datetime = $end_date . 'T23:59:59Z';
+        
+        // Jobber GraphQL query — fetch jobs + their visits (visits = actual scheduled appointments)
+        // Limit to 100 jobs and 20 visits per job to stay within Jobber's 10,000 query cost budget
+        $query = '{
+            jobs(first: 100) {
+                nodes {
+                    id
+                    title
+                    jobStatus
+                    startAt
+                    endAt
+                    visits(first: 20) {
+                        nodes {
+                            startAt
+                            endAt
+                        }
+                    }
+                }
+            }
+        }';
+        
+        $response = wp_remote_post($graphql_endpoint, array(
+            'timeout' => 30,
+            'headers' => array(
+                'Authorization' => 'Bearer ' . $access_token,
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+                'X-JOBBER-GRAPHQL-VERSION' => $api_version,
+            ),
+            'body' => wp_json_encode(array('query' => $query)),
+        ));
+        
+        if (is_wp_error($response)) {
+            xtremecleans_log('Jobber jobs fetch error: ' . $response->get_error_message(), 'error');
+            return $booked_slots;
+        }
+        
+        $status = wp_remote_retrieve_response_code($response);
+        $body = wp_remote_retrieve_body($response);
+        $data = json_decode($body, true);
+        
+        // If 401 (expired token), try refreshing and retrying once
+        if ($status === 401) {
+            xtremecleans_log('Jobber 401 on booked slots fetch, attempting token refresh and retry...', 'info');
+            $refreshed_token = $this->ensure_fresh_jobber_token();
+            if (!empty($refreshed_token) && $refreshed_token !== $access_token) {
+                $response = wp_remote_post($graphql_endpoint, array(
+                    'timeout' => 30,
+                    'headers' => array(
+                        'Authorization' => 'Bearer ' . $refreshed_token,
+                        'Content-Type' => 'application/json',
+                        'Accept' => 'application/json',
+                        'X-JOBBER-GRAPHQL-VERSION' => $api_version,
+                    ),
+                    'body' => wp_json_encode(array('query' => $query)),
+                ));
+                if (!is_wp_error($response)) {
+                    $status = wp_remote_retrieve_response_code($response);
+                    $body = wp_remote_retrieve_body($response);
+                    $data = json_decode($body, true);
+                }
+            }
+        }
+        
+        if ($status < 200 || $status >= 300) {
+            xtremecleans_log('Jobber jobs API returned status ' . $status . ': ' . substr($body, 0, 300), 'error');
+            return $booked_slots;
+        }
+        
+        if (isset($data['errors'])) {
+            $error_msgs = array();
+            foreach ($data['errors'] as $error) {
+                if (isset($error['message'])) {
+                    $error_msgs[] = $error['message'];
+                }
+            }
+            xtremecleans_log('Jobber jobs GraphQL errors: ' . implode(', ', $error_msgs), 'error');
+            // If there are also data, continue processing; otherwise return
+            if (!isset($data['data']['jobs']['nodes'])) {
+                return $booked_slots;
+            }
+        }
+        
+        if (!isset($data['data']['jobs']['nodes'])) {
+            xtremecleans_log('Jobber jobs: unexpected response format', 'warning');
+            return $booked_slots;
+        }
+        
+        $jobs = $data['data']['jobs']['nodes'];
+        
+        if (empty($jobs)) {
+            xtremecleans_log('No Jobber jobs found', 'debug');
+            return $booked_slots;
+        }
+        
+        xtremecleans_log('Found ' . count($jobs) . ' Jobber jobs total, filtering for date range ' . $start_date . ' to ' . $end_date, 'info');
+        
+        // Process each Jobber job — filter by date range client-side
+        foreach ($jobs as $job) {
+            // Skip jobs without scheduling data
+            if (empty($job['startAt'])) {
+                continue;
+            }
+            
+            // Only include active jobs (not completed/cancelled)
+            $job_status = isset($job['jobStatus']) ? $job['jobStatus'] : '';
+            if (in_array($job_status, array('COMPLETED', 'CANCELLED', 'CLOSED'), true)) {
+                continue;
+            }
+            
+            $job_title = isset($job['title']) ? $job['title'] : '';
+            
+            // First, check if job has visits (visits = actual scheduled appointments with times)
+            $has_visits = !empty($job['visits']['nodes']) && is_array($job['visits']['nodes']);
+            
+            if ($has_visits) {
+                // Process each visit — visits have the actual scheduled times
+                foreach ($job['visits']['nodes'] as $visit) {
+                    if (empty($visit['startAt'])) {
+                        continue;
+                    }
+                    $this->map_time_block_to_slots(
+                        $visit['startAt'],
+                        isset($visit['endAt']) ? $visit['endAt'] : null,
+                        $job_title,
+                        $start_date,
+                        $end_date,
+                        $time_windows,
+                        $booked_slots
+                    );
+                }
+            } else {
+                // No visits — use job-level startAt/endAt
+                $this->map_time_block_to_slots(
+                    $job['startAt'],
+                    isset($job['endAt']) ? $job['endAt'] : null,
+                    $job_title,
+                    $start_date,
+                    $end_date,
+                    $time_windows,
+                    $booked_slots
+                );
+            }
+        }
+        
+        return $booked_slots;
+    }
+    
+    /**
+     * Map a single time block (startAt/endAt) to booking windows.
+     * If the time is midnight (00:00), it means date-only — block ALL windows for that day.
+     *
+     * @since 1.1.0
+     * @param string      $start_at    ISO 8601 datetime string
+     * @param string|null $end_at      ISO 8601 datetime string or null
+     * @param string      $title       Job/visit title for logging
+     * @param string      $range_start Date range start (Y-m-d)
+     * @param string      $range_end   Date range end (Y-m-d)
+     * @param array       $time_windows Available time windows
+     * @param array       &$booked_slots Reference to booked slots array
+     */
+    private function map_time_block_to_slots($start_at, $end_at, $title, $range_start, $range_end, $time_windows, &$booked_slots) {
+        // Get business timezone for converting UTC → local time
+        $biz_tz = $this->get_business_timezone();
+        
+        try {
+            $start_dt = new DateTime($start_at);
+            $start_dt->setTimezone($biz_tz); // Convert UTC → business local
+            $end_dt = !empty($end_at) ? new DateTime($end_at) : null;
+            if ($end_dt) {
+                $end_dt->setTimezone($biz_tz); // Convert UTC → business local
+            }
+        } catch (Exception $e) {
+            xtremecleans_log('Failed to parse Jobber datetime: ' . $e->getMessage(), 'warning');
+            return;
+        }
+        
+        $job_date = $start_dt->format('Y-m-d'); // Now in local timezone
+        
+        // Filter by date range
+        if ($job_date < $range_start || $job_date > $range_end) {
+            return;
+        }
+        
+        $job_start_hour = (float) $start_dt->format('H') + ((float) $start_dt->format('i') / 60);
+        
+        // Check if this is a date-only entry (local time is midnight 00:00)
+        // Jobber date-only jobs come as midnight local time (e.g. 2026-03-02T05:00:00Z = midnight EST)
+        $is_date_only = ($start_dt->format('H:i:s') === '00:00:00');
+        
+        // Also check if endAt is 23:59:59 local (another indicator of date-only/all-day)
+        if (!$is_date_only && $end_dt) {
+            $end_time_str = $end_dt->format('H:i:s');
+            $end_date_str = $end_dt->format('Y-m-d');
+            if ($end_time_str === '23:59:59' && $end_date_str === $job_date) {
+                $is_date_only = true;
+            }
+        }
+        
+        if ($is_date_only) {
+            // Date-only job — block ALL windows for this day
+            foreach ($time_windows as $window) {
+                $booked_slots[] = array(
+                    'date' => $job_date,
+                    'time' => $window['label'],
+                    'source' => 'jobber',
+                    'job_title' => $title,
+                    'reason' => 'date-only (all-day)',
+                );
+            }
+            xtremecleans_log('Jobber job "' . $title . '" (date-only) blocks ALL slots on: ' . $job_date, 'debug');
+            return;
+        }
+        
+        // Has specific time — calculate end hour (already in local timezone)
+        if ($end_dt) {
+            $job_end_hour = (float) $end_dt->format('H') + ((float) $end_dt->format('i') / 60);
+            // If end is midnight next day, treat as end-of-day
+            if ($job_end_hour == 0) {
+                $job_end_hour = 24;
+            }
+        } else {
+            $job_end_hour = $job_start_hour + 2; // Assume 2-hour duration
+        }
+        
+        xtremecleans_log('Jobber job "' . $title . '" local time: ' . $start_dt->format('Y-m-d H:i') . ' - ' . ($end_dt ? $end_dt->format('H:i') : 'n/a') . ' (hours: ' . $job_start_hour . '-' . $job_end_hour . ')', 'debug');
+        
+        // Map job to time windows — block any window that overlaps
+        foreach ($time_windows as $window) {
+            if ($job_start_hour < $window['end'] && $job_end_hour > $window['start']) {
+                $booked_slots[] = array(
+                    'date' => $job_date,
+                    'time' => $window['label'],
+                    'source' => 'jobber',
+                    'job_title' => $title,
+                    'reason' => 'time-overlap (' . $job_start_hour . '-' . $job_end_hour . 'h)',
+                );
+                xtremecleans_log('Jobber job "' . $title . '" blocks slot: ' . $job_date . ' ' . $window['label'], 'debug');
+            }
+        }
+    }
+    
+    /**
+     * Fetch dynamic availability/schedule data from Jobber.
+     * Returns available time windows and working days derived from actual Jobber jobs.
+     *
+     * @since 1.1.0
+     * @return array Availability data with 'arrival_windows', 'working_days', 'workday_start', 'workday_end'
+     */
+    private function get_jobber_availability() {
+        // Default fallback availability (used when Jobber is not configured or API fails)
+        $defaults = array(
+            'arrival_windows' => array(
+                array('start' => 8, 'end' => 9, 'label' => '8:00 AM - 9:00 AM'),
+                array('start' => 11, 'end' => 14, 'label' => '11:00 AM - 2:00 PM'),
+                array('start' => 14.5, 'end' => 17, 'label' => '2:30 PM - 5:00 PM'),
+            ),
+            'working_days' => array(1, 2, 3, 4, 5), // Mon-Fri (0=Sun, 1=Mon...6=Sat)
+            'workday_start' => 8,
+            'workday_end' => 17,
+            'source' => 'default',
+        );
+        
+        if (!xtremecleans_is_api_configured()) {
+            return $defaults;
+        }
+        
+        // Get fresh token (auto-refresh if expired)
+        $access_token = $this->ensure_fresh_jobber_token();
+        if (empty($access_token)) {
+            return $defaults;
+        }
+        
+        // Check transient cache (cache for 15 minutes to reduce API calls)
+        $cached = get_transient('xtremecleans_jobber_availability');
+        if ($cached !== false) {
+            return $cached;
+        }
+        
+        $graphql_endpoint = 'https://api.getjobber.com/api/graphql';
+        $api_version = apply_filters('xtremecleans_jobber_api_version', '2025-04-16');
+        
+        // Fetch recent and upcoming jobs to analyze scheduling patterns
+        // Look at jobs in the next 30 days to determine working patterns
+        $today = date('Y-m-d');
+        $thirty_days = date('Y-m-d', strtotime('+30 days'));
+        
+        // Limit to 100 jobs and 10 visits per job to stay within Jobber's 10,000 query cost budget
+        $query = '{
+            jobs(first: 100) {
+                nodes {
+                    id
+                    title
+                    jobStatus
+                    startAt
+                    endAt
+                    visits(first: 10) {
+                        nodes {
+                            startAt
+                            endAt
+                        }
+                    }
+                }
+            }
+        }';
+        
+        $response = wp_remote_post($graphql_endpoint, array(
+            'timeout' => 30,
+            'headers' => array(
+                'Authorization' => 'Bearer ' . $access_token,
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+                'X-JOBBER-GRAPHQL-VERSION' => $api_version,
+            ),
+            'body' => wp_json_encode(array('query' => $query)),
+        ));
+        
+        if (is_wp_error($response)) {
+            xtremecleans_log('Jobber availability fetch error: ' . $response->get_error_message(), 'error');
+            return $defaults;
+        }
+        
+        $status = wp_remote_retrieve_response_code($response);
+        $body = wp_remote_retrieve_body($response);
+        $data = json_decode($body, true);
+        
+        // If 401 (expired token), try refreshing and retrying once
+        if ($status === 401) {
+            xtremecleans_log('Jobber 401 on availability fetch, attempting token refresh and retry...', 'info');
+            $refreshed_token = $this->ensure_fresh_jobber_token();
+            if (!empty($refreshed_token) && $refreshed_token !== $access_token) {
+                $response = wp_remote_post($graphql_endpoint, array(
+                    'timeout' => 30,
+                    'headers' => array(
+                        'Authorization' => 'Bearer ' . $refreshed_token,
+                        'Content-Type' => 'application/json',
+                        'Accept' => 'application/json',
+                        'X-JOBBER-GRAPHQL-VERSION' => $api_version,
+                    ),
+                    'body' => wp_json_encode(array('query' => $query)),
+                ));
+                if (!is_wp_error($response)) {
+                    $status = wp_remote_retrieve_response_code($response);
+                    $body = wp_remote_retrieve_body($response);
+                    $data = json_decode($body, true);
+                }
+            }
+        }
+        
+        if ($status < 200 || $status >= 300 || !isset($data['data']['jobs']['nodes'])) {
+            xtremecleans_log('Jobber availability: API error or unexpected format (status: ' . $status . '). Response: ' . substr($body, 0, 500), 'warning');
+            return $defaults;
+        }
+        
+        $jobs = $data['data']['jobs']['nodes'];
+        
+        if (empty($jobs)) {
+            xtremecleans_log('No Jobber jobs found for availability analysis, using defaults', 'info');
+            return $defaults;
+        }
+        
+        // Analyze job scheduling patterns to build dynamic availability
+        $biz_tz = $this->get_business_timezone($jobs); // Pass jobs for timezone auto-detection
+        $earliest_start = 24; // Track earliest job start
+        $latest_end = 0;      // Track latest job end
+        $working_days_map = array(); // Track which days of week have jobs
+        $time_blocks = array(); // Collect all start/end times to build windows
+        
+        foreach ($jobs as $job) {
+            if (empty($job['startAt'])) {
+                continue;
+            }
+            
+            $job_status = isset($job['jobStatus']) ? $job['jobStatus'] : '';
+            if (in_array($job_status, array('COMPLETED', 'CANCELLED', 'CLOSED'), true)) {
+                continue;
+            }
+            
+            // Prefer visit-level times over job-level times for pattern analysis
+            $has_visits = !empty($job['visits']['nodes']) && is_array($job['visits']['nodes']);
+            $entries_to_analyze = array();
+            
+            if ($has_visits) {
+                foreach ($job['visits']['nodes'] as $visit) {
+                    if (!empty($visit['startAt'])) {
+                        $entries_to_analyze[] = array(
+                            'startAt' => $visit['startAt'],
+                            'endAt'   => isset($visit['endAt']) ? $visit['endAt'] : null,
+                        );
+                    }
+                }
+            }
+            
+            // Fallback to job-level if no visits
+            if (empty($entries_to_analyze)) {
+                $entries_to_analyze[] = array(
+                    'startAt' => $job['startAt'],
+                    'endAt'   => isset($job['endAt']) ? $job['endAt'] : null,
+                );
+            }
+            
+            foreach ($entries_to_analyze as $entry) {
+                try {
+                    $start_dt = new DateTime($entry['startAt']);
+                    $start_dt->setTimezone($biz_tz); // Convert UTC → local
+                    $end_dt = !empty($entry['endAt']) ? new DateTime($entry['endAt']) : null;
+                    if ($end_dt) {
+                        $end_dt->setTimezone($biz_tz); // Convert UTC → local
+                    }
+                } catch (Exception $e) {
+                    continue;
+                }
+                
+                // Skip date-only entries (midnight local time) from pattern analysis
+                // These would skew workday_start to 0 and pollute time clusters
+                if ($start_dt->format('H:i:s') === '00:00:00') {
+                    // Still count the day for working_days analysis
+                    $day_of_week = (int) $start_dt->format('w');
+                    $working_days_map[$day_of_week] = true;
+                    continue;
+                }
+                
+                $start_hour = (float) $start_dt->format('H') + ((float) $start_dt->format('i') / 60);
+                $end_hour = $end_dt ? ((float) $end_dt->format('H') + ((float) $end_dt->format('i') / 60)) : ($start_hour + 2);
+                // If end is midnight, treat as end-of-day
+                if ($end_hour == 0 && $end_dt) $end_hour = 24;
+                $day_of_week = (int) $start_dt->format('w');
+                
+                if ($start_hour < $earliest_start) $earliest_start = $start_hour;
+                if ($end_hour > $latest_end) $latest_end = $end_hour;
+                $working_days_map[$day_of_week] = true;
+                
+                $time_blocks[] = array('start' => $start_hour, 'end' => $end_hour);
+            }
+        }
+        
+        // Build availability from analyzed patterns
+        $workday_start = $earliest_start < 24 ? floor($earliest_start) : 8;
+        $workday_end = $latest_end > 0 ? ceil($latest_end) : 17;
+        
+        // Ensure reasonable bounds
+        $workday_start = max(6, min(12, $workday_start));  // Between 6 AM and 12 PM
+        $workday_end = max(14, min(22, $workday_end));       // Between 2 PM and 10 PM
+        
+        // Build working days: Monday-Friday open, Saturday & Sunday closed
+        $working_days = array(1, 2, 3, 4, 5); // 0=Sun, 1=Mon...6=Sat
+        
+        // Build arrival windows from job time patterns
+        // Group jobs into natural clusters and create windows
+        // Use fixed 3-slot arrival windows (business-defined)
+        $arrival_windows = array(
+            array('start' => 8, 'end' => 9, 'label' => '8:00 AM - 9:00 AM'),
+            array('start' => 11, 'end' => 14, 'label' => '11:00 AM - 2:00 PM'),
+            array('start' => 14.5, 'end' => 17, 'label' => '2:30 PM - 5:00 PM'),
+        );
+        
+        $result = array(
+            'arrival_windows' => $arrival_windows,
+            'working_days' => $working_days,
+            'workday_start' => $workday_start,
+            'workday_end' => $workday_end,
+            'source' => 'jobber',
+            'jobs_analyzed' => count($time_blocks),
+        );
+        
+        // Cache for 15 minutes
+        set_transient('xtremecleans_jobber_availability', $result, 15 * MINUTE_IN_SECONDS);
+        
+        xtremecleans_log('Jobber availability built from ' . count($time_blocks) . ' jobs: ' . count($arrival_windows) . ' windows, workday ' . $workday_start . '-' . $workday_end, 'info');
+        
+        return $result;
+    }
+    
+    /**
+     * Build arrival time windows from analyzed Jobber job time patterns.
+     * Groups job times into natural clusters and creates booking windows.
+     *
+     * @since 1.1.0
+     * @param array $time_blocks Array of ['start' => float, 'end' => float]
+     * @param float $workday_start Earliest workday hour
+     * @param float $workday_end Latest workday hour
+     * @return array Arrival windows array
+     */
+    private function build_arrival_windows_from_jobs($time_blocks, $workday_start, $workday_end) {
+        // Default fallback windows
+        $default_windows = array(
+            array('start' => 8, 'end' => 9, 'label' => '8:00 AM - 9:00 AM'),
+            array('start' => 11, 'end' => 14, 'label' => '11:00 AM - 2:00 PM'),
+            array('start' => 14.5, 'end' => 17, 'label' => '2:30 PM - 5:00 PM'),
+        );
+        
+        if (empty($time_blocks) || count($time_blocks) < 3) {
+            // Not enough data to build patterns — use defaults
+            return $default_windows;
+        }
+        
+        // Collect all start times and sort them
+        $start_times = array();
+        foreach ($time_blocks as $block) {
+            $start_times[] = $block['start'];
+        }
+        sort($start_times);
+        
+        // Group start times into clusters (times within 1.5 hours of each other)
+        $clusters = array();
+        $current_cluster = array($start_times[0]);
+        
+        for ($i = 1; $i < count($start_times); $i++) {
+            if ($start_times[$i] - end($current_cluster) <= 1.5) {
+                $current_cluster[] = $start_times[$i];
+            } else {
+                $clusters[] = $current_cluster;
+                $current_cluster = array($start_times[$i]);
+            }
+        }
+        $clusters[] = $current_cluster;
+        
+        // Build windows from clusters
+        $windows = array();
+        foreach ($clusters as $cluster) {
+            $cluster_start = floor(min($cluster));
+            $cluster_end = ceil(max($cluster)) + 1; // Add 1 hour buffer
+            
+            // Clamp to workday
+            $cluster_start = max($workday_start, $cluster_start);
+            $cluster_end = min($workday_end, $cluster_end);
+            
+            if ($cluster_end <= $cluster_start) {
+                continue;
+            }
+            
+            $windows[] = array(
+                'start' => $cluster_start,
+                'end' => $cluster_end,
+                'label' => $this->format_time_label($cluster_start) . ' - ' . $this->format_time_label($cluster_end),
+            );
+        }
+        
+        // If we got valid windows, use them; otherwise fall back to defaults
+        if (empty($windows)) {
+            return $default_windows;
+        }
+        
+        // Merge overlapping windows
+        usort($windows, function($a, $b) {
+            return $a['start'] <=> $b['start'];
+        });
+        
+        $merged = array($windows[0]);
+        for ($i = 1; $i < count($windows); $i++) {
+            $last = &$merged[count($merged) - 1];
+            if ($windows[$i]['start'] <= $last['end']) {
+                // Overlapping — merge
+                $last['end'] = max($last['end'], $windows[$i]['end']);
+                $last['label'] = $this->format_time_label($last['start']) . ' - ' . $this->format_time_label($last['end']);
+            } else {
+                $merged[] = $windows[$i];
+            }
+        }
+        
+        return $merged;
+    }
+    
+    /**
+     * Format decimal hour to readable time label (e.g. 14.5 => "2:30 PM")
+     *
+     * @since 1.1.0
+     * @param float $hour Decimal hour (e.g. 14.5 = 2:30 PM)
+     * @return string Formatted time label
+     */
+    private function format_time_label($hour) {
+        $h = (int) floor($hour);
+        $m = (int) round(($hour - $h) * 60);
+        $period = $h >= 12 ? 'PM' : 'AM';
+        $display_h = $h > 12 ? $h - 12 : ($h === 0 ? 12 : $h);
+        return $display_h . ':' . str_pad($m, 2, '0', STR_PAD_LEFT) . ' ' . $period;
+    }
+    
+    /**
+     * AJAX: Return Jobber-derived availability (time windows, working days, etc.)
+     * Called by frontend calendar to build dynamic slot grid.
+     *
+     * @since 1.1.0
+     */
+    public function ajax_get_jobber_availability() {
+        $availability = $this->get_jobber_availability();
+        wp_send_json_success($availability);
+    }
+    
+    /**
+     * Total bookings occupying a slot: WordPress orders + Jobber-mapped jobs for that window.
+     * Defaults to WP count + Jobber count (conservative). If the same job appears in both, use filter
+     * `xtremecleans_slot_occupancy_count` to adjust (e.g. max(wp, jobber)).
+     *
+     * Filter: `xtremecleans_slot_occupancy_count` — receives ($total, $date, $time, $wp_count, $jobber_count).
+     *
+     * @since 1.1.0
+     * @param string $appointment_date Y-m-d.
+     * @param string $appointment_time Arrival window label (must match calendar labels).
+     * @return int
+     */
+    private function get_slot_occupancy_count($appointment_date, $appointment_time) {
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'xtremecleans_orders';
+        
+        $wp_count = (int) $wpdb->get_var($wpdb->prepare(
+            "SELECT COUNT(*) FROM {$table_name} WHERE appointment_date = %s AND appointment_time = %s",
+            $appointment_date,
+            $appointment_time
+        ));
+        
+        $availability   = $this->get_jobber_availability();
+        $time_windows   = isset($availability['arrival_windows']) ? $availability['arrival_windows'] : array();
+        $jobber_bookings = $this->get_jobber_appointments_for_date_range($appointment_date, $appointment_date, $time_windows);
+        $jobber_count   = 0;
+        if (!empty($jobber_bookings)) {
+            foreach ($jobber_bookings as $row) {
+                if (!empty($row['date']) && !empty($row['time']) && $row['date'] === $appointment_date && $row['time'] === $appointment_time) {
+                    $jobber_count++;
+                }
+            }
+        }
+        
+        $total = $wp_count + $jobber_count;
+        
+        return (int) apply_filters('xtremecleans_slot_occupancy_count', $total, $appointment_date, $appointment_time, $wp_count, $jobber_count);
+    }
+    
+    /**
+     * AJAX: Get booked appointment slots/counts for a date range.
+     * Used by frontend calendar to mark already-booked slots as unavailable.
+     * Merges WordPress orders + Jobber appointments.
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
      *
      * @since 1.0.0
      */
@@ -4074,6 +5385,7 @@ class XtremeCleans_Admin {
         $week_end   = isset($_REQUEST['week_end']) ? sanitize_text_field($_REQUEST['week_end']) : '';
         
         if (empty($week_start) || empty($week_end)) {
+<<<<<<< HEAD
             wp_send_json_success(array('booked_slots' => array()));
         }
         
@@ -4081,6 +5393,27 @@ class XtremeCleans_Admin {
         $table_name = $wpdb->prefix . 'xtremecleans_orders';
         
         $results = $wpdb->get_results($wpdb->prepare(
+=======
+            $slot_capacity_enabled = absint(get_option('xtremecleans_slot_capacity_enabled', 0)) === 1;
+            $slot_capacity          = $slot_capacity_enabled ? max(1, absint(get_option('xtremecleans_slot_capacity', 1))) : 1;
+            wp_send_json_success(array(
+                'booked_slots' => array(),
+                'slot_counts' => array(),
+                'slot_capacity' => $slot_capacity,
+                'slot_capacity_enabled' => $slot_capacity_enabled,
+            ));
+        }
+        
+        // Get current availability windows (may be from Jobber or defaults)
+        $availability = $this->get_jobber_availability();
+        $time_windows = isset($availability['arrival_windows']) ? $availability['arrival_windows'] : array();
+        
+        // Get WordPress orders bookings
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'xtremecleans_orders';
+        
+        $wp_results = $wpdb->get_results($wpdb->prepare(
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             "SELECT appointment_date, appointment_time FROM {$table_name} 
              WHERE appointment_date BETWEEN %s AND %s 
              AND appointment_date IS NOT NULL 
@@ -4091,6 +5424,7 @@ class XtremeCleans_Admin {
         ), ARRAY_A);
         
         $booked_slots = array();
+<<<<<<< HEAD
         if (!empty($results)) {
             foreach ($results as $row) {
                 $booked_slots[] = array(
@@ -4101,6 +5435,83 @@ class XtremeCleans_Admin {
         }
         
         wp_send_json_success(array('booked_slots' => $booked_slots));
+=======
+        $slot_counts_by_source = array();
+
+        // Add WordPress bookings
+        if (!empty($wp_results)) {
+            foreach ($wp_results as $row) {
+                $booked_slots[] = array(
+                    'date' => $row['appointment_date'],
+                    'time' => $row['appointment_time'],
+                    'source' => 'wordpress',
+                );
+                $slot_key = $row['appointment_date'] . '|' . $row['appointment_time'];
+                if (!isset($slot_counts_by_source[$slot_key])) {
+                    $slot_counts_by_source[$slot_key] = array(
+                        'date' => $row['appointment_date'],
+                        'time' => $row['appointment_time'],
+                        'wordpress' => 0,
+                        'jobber' => 0,
+                    );
+                }
+                $slot_counts_by_source[$slot_key]['wordpress']++;
+            }
+        }
+        
+        // Add Jobber appointments (pass current time windows for overlap mapping)
+        $jobber_bookings = $this->get_jobber_appointments_for_date_range($week_start, $week_end, $time_windows);
+        if (!empty($jobber_bookings)) {
+            $booked_slots = array_merge($booked_slots, $jobber_bookings);
+            foreach ($jobber_bookings as $row) {
+                $slot_key = $row['date'] . '|' . $row['time'];
+                if (!isset($slot_counts_by_source[$slot_key])) {
+                    $slot_counts_by_source[$slot_key] = array(
+                        'date' => $row['date'],
+                        'time' => $row['time'],
+                        'wordpress' => 0,
+                        'jobber' => 0,
+                    );
+                }
+                $slot_counts_by_source[$slot_key]['jobber']++;
+            }
+        }
+        
+        // Log summary for debugging
+        $wp_count = !empty($wp_results) ? count($wp_results) : 0;
+        $jobber_count = !empty($jobber_bookings) ? count($jobber_bookings) : 0;
+        xtremecleans_log('Booked slots summary: ' . $wp_count . ' from WordPress, ' . $jobber_count . ' from Jobber, range: ' . $week_start . ' to ' . $week_end, 'info');
+        
+        // Slot capacity config (1 when disabled)
+        $slot_capacity_enabled = absint(get_option('xtremecleans_slot_capacity_enabled', 0)) === 1;
+        $slot_capacity = $slot_capacity_enabled ? absint(get_option('xtremecleans_slot_capacity', 1)) : 1;
+        if ($slot_capacity < 1) {
+            $slot_capacity = 1;
+        }
+
+        // Effective occupancy = WP bookings + Jobber jobs for that slot (see get_slot_occupancy_count).
+        $slot_counts = array();
+        foreach ($slot_counts_by_source as $key => $counts) {
+            $wp_n   = (int) $counts['wordpress'];
+            $jb_n   = (int) $counts['jobber'];
+            $merged = (int) apply_filters('xtremecleans_slot_occupancy_count', $wp_n + $jb_n, $counts['date'], $counts['time'], $wp_n, $jb_n);
+            $slot_counts[$key] = array(
+                'date' => $counts['date'],
+                'time' => $counts['time'],
+                'count' => $merged,
+                'capacity' => $slot_capacity,
+                'wordpress' => $wp_n,
+                'jobber' => $jb_n,
+            );
+        }
+
+        wp_send_json_success(array(
+            'booked_slots' => $booked_slots, // kept for backward compatibility
+            'slot_counts' => $slot_counts,
+            'slot_capacity' => $slot_capacity,
+            'slot_capacity_enabled' => $slot_capacity_enabled,
+        ));
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
     }
     
     /**
@@ -4257,6 +5668,13 @@ class XtremeCleans_Admin {
         if (!current_user_can('manage_options')) {
             wp_die(__('Permission denied.', 'xtremecleans'));
         }
+<<<<<<< HEAD
+=======
+
+        if (!isset($_GET['_wpnonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['_wpnonce'])), 'xtremecleans_export_leads')) {
+            wp_die(__('Security check failed.', 'xtremecleans'));
+        }
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         
         $leads = $this->get_all_leads();
         
@@ -6225,6 +7643,153 @@ class XtremeCleans_Admin {
         return null;
     }
     
+<<<<<<< HEAD
+=======
+    const TRAVEL_MAX_MINUTES = 60;
+    
+    /**
+     * Get job end time as Unix timestamp (slot start + duration).
+     */
+    private function get_job_end_unix($appointment_date, $appointment_time, $duration_minutes) {
+        $iso_start = $this->parse_appointment_datetime($appointment_date, $appointment_time);
+        if (!$iso_start) {
+            return null;
+        }
+        $tz = wp_timezone();
+        $dt = date_create_from_format('c', $iso_start, $tz);
+        if (!$dt) {
+            $dt = date_create($iso_start, $tz);
+        }
+        if (!$dt) {
+            return null;
+        }
+        $dt->modify('+' . intval($duration_minutes) . ' minutes');
+        return $dt->getTimestamp();
+    }
+    
+    /**
+     * Get the next order on the same date whose slot start is after the given Unix time.
+     */
+    private function get_next_order_after_time($appointment_date, $after_unix, $default_duration_minutes = 120) {
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'xtremecleans_orders';
+        $orders = $wpdb->get_results($wpdb->prepare(
+            "SELECT id, appointment_date, appointment_time, address1, address2, city, state, zip_code FROM {$table_name} WHERE appointment_date = %s AND appointment_time IS NOT NULL AND appointment_time != '' ORDER BY appointment_time ASC",
+            $appointment_date
+        ), ARRAY_A);
+        if (empty($orders)) {
+            return null;
+        }
+        $next = null;
+        $next_start_unix = PHP_INT_MAX;
+        foreach ($orders as $order) {
+            $slot_start_iso = $this->parse_appointment_datetime($order['appointment_date'], $order['appointment_time']);
+            if (!$slot_start_iso) {
+                continue;
+            }
+            $tz = wp_timezone();
+            $dt = date_create_from_format('c', $slot_start_iso, $tz);
+            if (!$dt) {
+                $dt = date_create($slot_start_iso, $tz);
+            }
+            if (!$dt) {
+                continue;
+            }
+            $slot_start_unix = $dt->getTimestamp();
+            if ($slot_start_unix > $after_unix && $slot_start_unix < $next_start_unix) {
+                $next_start_unix = $slot_start_unix;
+                $next = $order;
+            }
+        }
+        return $next;
+    }
+    
+    private function build_address_string($address1, $address2, $city, $state, $zip_code) {
+        $parts = array_filter(array($address1, $address2, $city, $state, $zip_code));
+        return implode(', ', $parts);
+    }
+    
+    private function get_travel_fallback_message() {
+        $msg = get_option('xtremecleans_travel_fallback_message', '');
+        if ($msg !== '') {
+            return $msg;
+        }
+        $phone = get_option('xtremecleans_travel_fallback_phone', '410-819-2223');
+        return sprintf(
+            __('Online booking for that time is limited right now. Choose another time or call/text %s.', 'xtremecleans'),
+            $phone
+        );
+    }
+    
+    /**
+     * Validate travel time: crew must reach next job in ≤ 60 min. Any error = block with fallback message.
+     */
+    private function validate_travel_time_for_order($customer, $appointment_date, $appointment_time, $duration_minutes) {
+        if (get_option('xtremecleans_travel_enabled', '0') !== '1') {
+            return true;
+        }
+        $api_key = get_option('xtremecleans_google_api_key', '');
+        if (empty($api_key)) {
+            return true;
+        }
+        $default_duration = (int) get_option('xtremecleans_default_job_duration_minutes', 120);
+        if ($duration_minutes <= 0) {
+            $duration_minutes = $default_duration;
+        }
+        $E_unix = $this->get_job_end_unix($appointment_date, $appointment_time, $duration_minutes);
+        if (!$E_unix) {
+            return new WP_Error('travel_parse', $this->get_travel_fallback_message());
+        }
+        $next_order = $this->get_next_order_after_time($appointment_date, $E_unix, $default_duration);
+        if (!$next_order) {
+            return true;
+        }
+        $new_address = $this->build_address_string(
+            isset($customer['address1']) ? $customer['address1'] : '',
+            isset($customer['address2']) ? $customer['address2'] : '',
+            isset($customer['city']) ? $customer['city'] : '',
+            isset($customer['state']) ? $customer['state'] : '',
+            isset($customer['zip_code']) ? $customer['zip_code'] : ''
+        );
+        $next_address = $this->build_address_string(
+            $next_order['address1'],
+            isset($next_order['address2']) ? $next_order['address2'] : '',
+            $next_order['city'],
+            $next_order['state'],
+            $next_order['zip_code']
+        );
+        if (empty($new_address) || empty($next_address)) {
+            return new WP_Error('travel_address', $this->get_travel_fallback_message());
+        }
+        $travel_file = XTREMECLEANS_PLUGIN_DIR . 'core/google/class-xtremecleans-google-travel.php';
+        if (!file_exists($travel_file)) {
+            return new WP_Error('travel_missing', $this->get_travel_fallback_message());
+        }
+        require_once $travel_file;
+        $origin = XtremeCleans_Google_Travel::geocode($new_address, $api_key);
+        if (!$origin) {
+            return new WP_Error('travel_geocode_origin', $this->get_travel_fallback_message());
+        }
+        $dest = XtremeCleans_Google_Travel::geocode($next_address, $api_key);
+        if (!$dest) {
+            return new WP_Error('travel_geocode_dest', $this->get_travel_fallback_message());
+        }
+        $seconds = XtremeCleans_Google_Travel::get_duration_in_traffic_seconds(
+            $origin['lat'], $origin['lng'],
+            $dest['lat'], $dest['lng'],
+            $E_unix,
+            $api_key
+        );
+        if (is_wp_error($seconds)) {
+            return new WP_Error('travel_api', $this->get_travel_fallback_message());
+        }
+        if (($seconds / 60) > self::TRAVEL_MAX_MINUTES) {
+            return new WP_Error('travel_exceeded', $this->get_travel_fallback_message());
+        }
+        return true;
+    }
+    
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
     private function get_jobber_auth_url() {
         if (!class_exists('XtremeCleans_Frontend')) {
             $frontend_file = XTREMECLEANS_PLUGIN_DIR . 'core/frontend/class-xtremecleans-frontend.php';
@@ -6254,6 +7819,11 @@ class XtremeCleans_Admin {
         
         // Get ZIP code if provided
         $zip_code = isset($_POST['zip_code']) ? sanitize_text_field($_POST['zip_code']) : '';
+<<<<<<< HEAD
+=======
+        $requested_service_values = $this->sanitize_service_names_from_request(isset($_POST['service_name']) ? $_POST['service_name'] : '');
+        $requested_service = !empty($requested_service_values) ? strtolower($requested_service_values[0]) : '';
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         
         // Check if we should fetch services directly from Jobber API
         $fetch_from_jobber = get_option('xtremecleans_fetch_services_from_jobber', false);
@@ -6267,9 +7837,13 @@ class XtremeCleans_Admin {
                 $service_names = array_map('trim', $service_names);
                 
                 // Handle requested service name matching
+<<<<<<< HEAD
                 $requested_service = isset($_POST['service_name']) ? sanitize_text_field($_POST['service_name']) : '';
                 if (!empty($requested_service) && !empty($service_names)) {
                     $requested_service = strtolower($requested_service);
+=======
+                if (!empty($requested_service) && !empty($service_names)) {
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                     $matched_service = '';
                     foreach ($service_names as $name) {
                         if (strtolower($name) === $requested_service) {
@@ -6311,6 +7885,7 @@ class XtremeCleans_Admin {
             if ($only_jobber || $zip_based_jobber) {
                 // If ZIP code is provided and ZIP-based filtering is enabled, filter by ZIP
                 if (!empty($zip_code) && $zip_based_jobber) {
+<<<<<<< HEAD
                     // Get services for this ZIP code from zip_reference table
                     $zip_table = $wpdb->prefix . 'xtremecleans_zip_reference';
                     $zip_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $zip_table));
@@ -6368,6 +7943,38 @@ class XtremeCleans_Admin {
                             AND synced_from_jobber = 1 
                             ORDER BY service_name ASC"
                         );
+=======
+                    $all_jobber_services = $wpdb->get_col(
+                        "SELECT DISTINCT service_name 
+                        FROM `{$service_items_table}` 
+                        WHERE service_name IS NOT NULL 
+                        AND service_name != '' 
+                        AND synced_from_jobber = 1 
+                        ORDER BY service_name ASC"
+                    );
+
+                    $zip_services = $this->get_service_names_by_zip_code($zip_code);
+                    if (!empty($zip_services)) {
+                        $zip_lookup = array();
+                        foreach ($zip_services as $zip_service_name) {
+                            $zip_lookup[strtolower($zip_service_name)] = true;
+                        }
+
+                        foreach ($all_jobber_services as $service_name) {
+                            $normalized_service = strtolower(trim($service_name));
+                            if (isset($zip_lookup[$normalized_service])) {
+                                $service_names[] = $service_name;
+                            }
+                        }
+
+                        // If no exact match, fallback to all Jobber services.
+                        if (empty($service_names)) {
+                            $service_names = $all_jobber_services;
+                        }
+                    } else {
+                        // ZIP code not found in mapping, return all Jobber services.
+                        $service_names = $all_jobber_services;
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                     }
                 } else {
                     // Get all Jobber services (no ZIP filtering)
@@ -6398,6 +8005,7 @@ class XtremeCleans_Admin {
             
             if ($zip_exists) {
                 $zip_table = esc_sql($zip_table);
+<<<<<<< HEAD
         $service_names = $wpdb->get_col(
                     "SELECT DISTINCT service_name 
                     FROM `{$zip_table}` 
@@ -6414,6 +8022,32 @@ class XtremeCleans_Admin {
         if (!empty($requested_service)) {
             $requested_service = strtolower($requested_service);
         }
+=======
+                if (!empty($zip_code)) {
+                    $service_names = $wpdb->get_col($wpdb->prepare(
+                        "SELECT DISTINCT service_name 
+                        FROM `{$zip_table}` 
+                        WHERE zip_code = %s
+                        AND service_name IS NOT NULL
+                        AND service_name != '' 
+                        ORDER BY service_name ASC",
+                        $zip_code
+                    ));
+                }
+
+                if (empty($service_names)) {
+                    $service_names = $wpdb->get_col(
+                        "SELECT DISTINCT service_name 
+                        FROM `{$zip_table}` 
+                        WHERE service_name IS NOT NULL AND service_name != '' 
+                        ORDER BY service_name ASC"
+                    );
+                }
+            }
+        }
+        
+        $service_names = $this->sanitize_service_names_from_request($service_names);
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         
         // If a specific service name was provided, try to match it (case-insensitive)
         if (!empty($requested_service) && !empty($service_names)) {
@@ -6519,7 +8153,11 @@ class XtremeCleans_Admin {
         // Get service items for this service name
         $service_items = $wpdb->get_results(
             $wpdb->prepare(
+<<<<<<< HEAD
                 "SELECT item_name, item_description, 
+=======
+                "SELECT item_name, item_description, service_item_duration,
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                         COALESCE(price1_name, 'Clean') as price1_name,
                         COALESCE(price1_value, clean_price, 0.00) as price1_value,
                         COALESCE(price2_name, 'Protect') as price2_name,
@@ -6554,6 +8192,10 @@ class XtremeCleans_Admin {
             `service_name` varchar(100) NOT NULL,
             `item_name` varchar(100) NOT NULL,
             `item_description` text DEFAULT NULL,
+<<<<<<< HEAD
+=======
+            `service_item_duration` int(11) DEFAULT NULL,
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             `price1_name` varchar(50) DEFAULT 'Clean',
             `price1_value` decimal(10,2) DEFAULT '0.00',
             `price2_name` varchar(50) DEFAULT 'Protect',
@@ -6569,6 +8211,10 @@ class XtremeCleans_Admin {
             KEY `service_name` (`service_name`),
             KEY `item_name` (`item_name`)
         ) {$charset_collate};";
+<<<<<<< HEAD
+=======
+        $this->maybe_add_service_item_column('service_item_duration', "int(11) DEFAULT NULL");
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         dbDelta($sql);
@@ -6608,7 +8254,11 @@ class XtremeCleans_Admin {
         
         $table_name_escaped = esc_sql($table_name);
         $results = $wpdb->get_results(
+<<<<<<< HEAD
             "SELECT * FROM `{$table_name_escaped}` ORDER BY service_name ASC, id ASC",
+=======
+            "SELECT *, service_item_duration FROM `{$table_name_escaped}` ORDER BY service_name ASC, id ASC",
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             ARRAY_A
         );
         
@@ -6832,12 +8482,20 @@ class XtremeCleans_Admin {
             $price2_value = isset($raw_item['price2_value']) ? floatval($raw_item['price2_value']) : 0.00;
             $price3_value = isset($raw_item['price3_value']) ? floatval($raw_item['price3_value']) : 0.00;
             
+<<<<<<< HEAD
+=======
+            $service_item_duration = isset($raw_item['service_item_duration']) ? intval($raw_item['service_item_duration']) : null;
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             $result = $wpdb->insert(
                 $table_name,
                 array(
                     'service_name' => $service_name,
                     'item_name' => $item_name,
                     'item_description' => $item_description,
+<<<<<<< HEAD
+=======
+                    'service_item_duration' => $service_item_duration,
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                     'price1_name' => $price1_name,
                     'price1_value' => $price1_value,
                     'price2_name' => $price2_name,
@@ -6848,7 +8506,11 @@ class XtremeCleans_Admin {
                     'protect_price' => $price2_value,
                     'deodorize_price' => $price3_value,
                 ),
+<<<<<<< HEAD
                 array('%s', '%s', '%s', '%s', '%f', '%s', '%f', '%s', '%f', '%f', '%f', '%f')
+=======
+                array('%s', '%s', '%s', '%d', '%s', '%f', '%s', '%f', '%s', '%f', '%f', '%f', '%f')
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             );
             
             if ($result !== false) {
@@ -6931,17 +8593,29 @@ class XtremeCleans_Admin {
             }
             
             // Insert service item
+<<<<<<< HEAD
+=======
+            $service_item_duration = isset($item['service_item_duration']) ? intval($item['service_item_duration']) : null;
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             $result = $wpdb->insert(
                 $table_name,
                 array(
                     'service_name' => $service_name,
                     'item_name' => $item_name,
                     'item_description' => $item_description,
+<<<<<<< HEAD
+=======
+                    'service_item_duration' => $service_item_duration,
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                     'clean_price' => $clean_price,
                     'protect_price' => $protect_price,
                     'deodorize_price' => $deodorize_price,
                 ),
+<<<<<<< HEAD
                 array('%s', '%s', '%s', '%f', '%f', '%f')
+=======
+                array('%s', '%s', '%s', '%d', '%f', '%f', '%f')
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             );
             
             if ($result !== false) {
@@ -7012,6 +8686,10 @@ class XtremeCleans_Admin {
         
         $item_name = isset($item_data['item_name']) ? sanitize_text_field($item_data['item_name']) : '';
         $item_description = isset($item_data['item_description']) ? sanitize_textarea_field($item_data['item_description']) : '';
+<<<<<<< HEAD
+=======
+        $service_item_duration = isset($item_data['service_item_duration']) ? intval($item_data['service_item_duration']) : null;
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         $price1_value = isset($item_data['price1_value']) ? floatval($item_data['price1_value']) : 0.00;
         $price2_value = isset($item_data['price2_value']) ? floatval($item_data['price2_value']) : 0.00;
         $price3_value = isset($item_data['price3_value']) ? floatval($item_data['price3_value']) : 0.00;
@@ -7027,6 +8705,10 @@ class XtremeCleans_Admin {
                 'service_name' => $service_name,
                 'item_name' => $item_name,
                 'item_description' => $item_description,
+<<<<<<< HEAD
+=======
+                'service_item_duration' => $service_item_duration,
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                 'price1_name' => $price1_name,
                 'price1_value' => $price1_value,
                 'price2_name' => $price2_name,
@@ -7038,7 +8720,11 @@ class XtremeCleans_Admin {
                 'deodorize_price' => $price3_value,
             ),
             array('id' => $item_id),
+<<<<<<< HEAD
             array('%s', '%s', '%s', '%s', '%f', '%s', '%f', '%s', '%f', '%f', '%f', '%f'),
+=======
+            array('%s', '%s', '%s', '%d', '%s', '%f', '%s', '%f', '%s', '%f', '%f', '%f', '%f'),
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             array('%d')
         );
         
@@ -7158,7 +8844,10 @@ class XtremeCleans_Admin {
     public function ajax_confirm_payment() {
         // Log that the function was called
         xtremecleans_log('=== PAYMENT CONFIRMATION AJAX CALLED ===', 'info');
+<<<<<<< HEAD
         xtremecleans_log('POST data: ' . wp_json_encode($_POST), 'info');
+=======
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         
         $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
         if (empty($nonce) || !wp_verify_nonce($nonce, 'xtremecleans_place_order')) {
@@ -7179,6 +8868,23 @@ class XtremeCleans_Admin {
         if ($order_id <= 0 || empty($payment_intent_id)) {
             wp_send_json_error(array('message' => __('Invalid payment data.', 'xtremecleans')));
         }
+<<<<<<< HEAD
+=======
+
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'xtremecleans_orders';
+        $order = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$table_name} WHERE id = %d", $order_id));
+
+        if (!$order) {
+            wp_send_json_error(array('message' => __('Order not found.', 'xtremecleans')));
+        }
+
+        // Bind confirmation to the payment intent created for this order.
+        if (!empty($order->stripe_payment_intent_id) && $order->stripe_payment_intent_id !== $payment_intent_id) {
+            xtremecleans_log('Payment confirmation failed: Payment intent does not match order #' . $order_id, 'error');
+            wp_send_json_error(array('message' => __('Payment verification failed for this order.', 'xtremecleans')));
+        }
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         
         // Verify payment intent
         xtremecleans_log('Payment confirmation started for order #' . $order_id . ' with payment intent: ' . $payment_intent_id, 'info');
@@ -7193,6 +8899,16 @@ class XtremeCleans_Admin {
         // Log payment intent status for debugging
         $payment_status = isset($payment_intent['status']) ? $payment_intent['status'] : 'unknown';
         xtremecleans_log('Payment intent status: ' . $payment_status, 'info');
+<<<<<<< HEAD
+=======
+
+        // Ensure Stripe metadata order binding also matches this order.
+        $intent_order_id = isset($payment_intent['metadata']['order_id']) ? absint($payment_intent['metadata']['order_id']) : 0;
+        if ($intent_order_id > 0 && $intent_order_id !== $order_id) {
+            xtremecleans_log('Payment confirmation failed: Stripe metadata order mismatch for order #' . $order_id, 'error');
+            wp_send_json_error(array('message' => __('Payment verification failed for this order.', 'xtremecleans')));
+        }
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         
         // CRITICAL: Verify payment was successful before proceeding
         // This ensures payment is REQUIRED before Jobber sync
@@ -7206,8 +8922,11 @@ class XtremeCleans_Admin {
         xtremecleans_log('Payment verified as successful. Proceeding with order update and Jobber sync.', 'info');
         
         // Payment successful - update order status
+<<<<<<< HEAD
         global $wpdb;
         $table_name = $wpdb->prefix . 'xtremecleans_orders';
+=======
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         
         $charge_id = isset($payment_intent['charges']['data'][0]['id']) ? $payment_intent['charges']['data'][0]['id'] : '';
         $amount_paid = isset($payment_intent['amount']) ? ($payment_intent['amount'] / 100) : 0; // Convert from cents to dollars
@@ -7232,6 +8951,7 @@ class XtremeCleans_Admin {
         
         xtremecleans_log('Order #' . $order_id . ' payment status updated to "paid". Charge ID: ' . $charge_id . ', Amount: $' . number_format($amount_paid, 2), 'info');
         
+<<<<<<< HEAD
         // Get order data for Jobber integration
         $order = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$table_name} WHERE id = %d", $order_id));
         
@@ -7239,6 +8959,8 @@ class XtremeCleans_Admin {
             wp_send_json_error(array('message' => __('Order not found.', 'xtremecleans')));
         }
         
+=======
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         // Decode order payload
         $order_data = json_decode($order->payload, true);
         if (empty($order_data)) {
@@ -7248,7 +8970,10 @@ class XtremeCleans_Admin {
         // IMPORTANT: Jobber sync happens ONLY after successful payment confirmation
         // This ensures payment is REQUIRED before sending to Jobber CRM
         xtremecleans_log('=== STARTING JOBBER SYNC AFTER PAYMENT ===', 'info');
+<<<<<<< HEAD
         xtremecleans_log('Order data for Jobber sync: ' . wp_json_encode($order_data), 'info');
+=======
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         
         $jobber_result = $this->maybe_send_order_to_api($order_data);
         
@@ -7343,7 +9068,11 @@ class XtremeCleans_Admin {
             ),
         );
         
+<<<<<<< HEAD
         xtremecleans_log('Sending success response: ' . wp_json_encode($response_data), 'info');
+=======
+        xtremecleans_log('Sending payment confirmation response for order #' . $order_id, 'info');
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         
         // Send response and ensure script stops
         wp_send_json_success($response_data);
@@ -7428,4 +9157,7 @@ class XtremeCleans_Admin {
         ));
     }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)

@@ -107,6 +107,105 @@ class XtremeCleans_Elementor_Widget extends \Elementor\Widget_Base {
      * Register widget controls
      */
     protected function register_controls() {
+<<<<<<< HEAD
+=======
+                // ============================================
+                // BOOKING UI TEXT CONTROLS
+                // ============================================
+                $this->start_controls_section(
+                    'booking_ui_text_section',
+                    [
+                        'label' => __('Booking UI Text', 'xtremecleans'),
+                        'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+                    ]
+                );
+                $this->add_control('quote_title', [
+                    'label' => __('Quote Title', 'xtremecleans'),
+                    'type' => \Elementor\Controls_Manager::TEXT,
+                    'default' => __('YOUR QUOTE', 'xtremecleans'),
+                ]);
+                $this->add_control('clear_text', [
+                    'label' => __('Clear Link Text', 'xtremecleans'),
+                    'type' => \Elementor\Controls_Manager::TEXT,
+                    'default' => __('Clear', 'xtremecleans'),
+                ]);
+                $this->add_control('estimated_total_label', [
+                    'label' => __('Estimated Total Label', 'xtremecleans'),
+                    'type' => \Elementor\Controls_Manager::TEXT,
+                    'default' => __('ESTIMATED TOTAL:', 'xtremecleans'),
+                ]);
+                $this->add_control('estimated_total_amount', [
+                    'label' => __('Estimated Total Amount', 'xtremecleans'),
+                    'type' => \Elementor\Controls_Manager::TEXT,
+                    'default' => '$0.00',
+                ]);
+                $this->add_control('estimated_duration_label', [
+                    'label' => __('Estimated Duration Label', 'xtremecleans'),
+                    'type' => \Elementor\Controls_Manager::TEXT,
+                    'default' => __('ESTIMATED DURATION:', 'xtremecleans'),
+                ]);
+                $this->add_control('estimated_duration', [
+                    'label' => __('Estimated Duration Value', 'xtremecleans'),
+                    'type' => \Elementor\Controls_Manager::TEXT,
+                    'default' => '0 minutes',
+                ]);
+                $this->add_control('quote_empty_text', [
+                    'label' => __('Empty Quote Message', 'xtremecleans'),
+                    'type' => \Elementor\Controls_Manager::TEXT,
+                    'default' => __('Add services to build your quote.', 'xtremecleans'),
+                ]);
+                $this->add_control('deposit_title', [
+                    'label' => __('Deposit Title', 'xtremecleans'),
+                    'type' => \Elementor\Controls_Manager::TEXT,
+                    'default' => __('Deposit: $20', 'xtremecleans'),
+                ]);
+                $this->add_control('deposit_description', [
+                    'label' => __('Deposit Description', 'xtremecleans'),
+                    'type' => \Elementor\Controls_Manager::TEXT,
+                    'default' => __('A $20 payment is required to confirm your appointment.', 'xtremecleans'),
+                ]);
+                $this->add_control('estimate_title', [
+                    'label' => __('Estimate Section Title', 'xtremecleans'),
+                    'type' => \Elementor\Controls_Manager::TEXT,
+                    'default' => __('For a more accurate estimate, please check all that apply:', 'xtremecleans'),
+                ]);
+                $this->add_control('estimate_arrow_icon', [
+                    'label' => __('Estimate Arrow Icon', 'xtremecleans'),
+                    'type' => \Elementor\Controls_Manager::TEXT,
+                    'default' => '▲',
+                ]);
+                $this->add_control('estimate_checkbox1', [
+                    'label' => __('Estimate Checkbox 1', 'xtremecleans'),
+                    'type' => \Elementor\Controls_Manager::TEXT,
+                    'default' => __('I do not have parking nearby.', 'xtremecleans'),
+                ]);
+                $this->add_control('estimate_checkbox2', [
+                    'label' => __('Estimate Checkbox 2', 'xtremecleans'),
+                    'type' => \Elementor\Controls_Manager::TEXT,
+                    'default' => __('Area is on 3rd floor or higher.', 'xtremecleans'),
+                ]);
+                $this->add_control('estimate_checkbox3', [
+                    'label' => __('Estimate Checkbox 3', 'xtremecleans'),
+                    'type' => \Elementor\Controls_Manager::TEXT,
+                    'default' => __('I have guaranteed parking.', 'xtremecleans'),
+                ]);
+                $this->add_control('estimate_note', [
+                    'label' => __('Estimate Note', 'xtremecleans'),
+                    'type' => \Elementor\Controls_Manager::TEXT,
+                    'default' => __('(If we need to park across or down the street, or clean above the 2nd floor, portable equipment may be required.)', 'xtremecleans'),
+                ]);
+                $this->add_control('minimum_charge_title', [
+                    'label' => __('Minimum Service Charge Title', 'xtremecleans'),
+                    'type' => \Elementor\Controls_Manager::TEXT,
+                    'default' => __('Minimum Service Charge Required', 'xtremecleans'),
+                ]);
+                $this->add_control('minimum_charge_icon', [
+                    'label' => __('Minimum Service Charge Icon', 'xtremecleans'),
+                    'type' => \Elementor\Controls_Manager::TEXT,
+                    'default' => '⚠️',
+                ]);
+                $this->end_controls_section();
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         
         // ============================================
         // CONTENT SECTION

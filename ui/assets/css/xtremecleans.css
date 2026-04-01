@@ -913,8 +913,13 @@
     }
     
     .xtremecleans-hero-section {
+<<<<<<< HEAD
         height: 100vh;
         min-height: 100vh;
+=======
+        height: 50vh;
+        min-height: 50vh;
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         padding: 40px 15px;
     }
     
@@ -998,10 +1003,15 @@
 .xtremecleans-button-primary:hover {
     background-color: #0056b3;
     color: #ffffff;
+<<<<<<< HEAD
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
 }
 
+=======
+
+}
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
 .xtremecleans-button-secondary {
     background-color: #6c757d;
     color: #ffffff;
@@ -1508,6 +1518,11 @@
     outline: none !important;
 }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
 #xtremecleans-quote-popup .xtremecleans-continue-btn:hover,
 .xtremecleans-quote-popup .xtremecleans-continue-btn:hover,
 .xtremecleans-hero-form-content .xtremecleans-continue-btn:hover {
@@ -2543,6 +2558,154 @@ body .xtremecleans-hero-section:has(~ .xtremecleans-service-selection.active) {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
+<<<<<<< HEAD
+=======
+    cursor: pointer !important;
+    text-decoration: none !important;
+    transition: background 0.2s ease, transform 0.15s ease !important;
+}
+
+#xtremecleans-service-selection .xtremecleans-card-column-info:hover,
+.xtremecleans-service-selection .xtremecleans-card-column-info:hover {
+    background: #e6a200 !important;
+    transform: scale(1.15) !important;
+}
+
+/* Tooltip Popup */
+.xtremecleans-tooltip-popup {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 999999 !important;
+    display: none;
+}
+
+.xtremecleans-tooltip-content {
+    position: absolute !important;
+    width: 280px !important;
+    background: #1b5e20 !important;
+    color: #ffffff !important;
+    padding: 14px 18px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25) !important;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    z-index: 1000000 !important;
+}
+
+.xtremecleans-tooltip-content::before {
+    content: '' !important;
+    position: absolute !important;
+    top: -8px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    border-left: 8px solid transparent !important;
+    border-right: 8px solid transparent !important;
+    border-bottom: 8px solid #1b5e20 !important;
+}
+
+.xtremecleans-tooltip-content p {
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #ffffff !important;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+}
+
+.xtremecleans-tooltip-close {
+    position: absolute !important;
+    top: 6px !important;
+    right: 10px !important;
+    font-size: 18px !important;
+    color: #ffffff !important;
+    cursor: pointer !important;
+    opacity: 0.7 !important;
+    line-height: 1 !important;
+}
+
+.xtremecleans-tooltip-close:hover {
+    opacity: 1 !important;
+}
+
+/* Pet Odor Checkbox Section */
+.xtremecleans-pet-odor-section {
+    margin-top: 16px !important;
+    padding: 14px 18px !important;
+    background: #fef9e7 !important;
+    border: 1px dashed #f0c040 !important;
+    border-radius: 10px !important;
+}
+
+.xtremecleans-pet-odor-label {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    cursor: pointer !important;
+    position: relative !important;
+    padding-left: 36px !important;
+    min-height: 28px !important;
+}
+
+.xtremecleans-pet-odor-label input[type="checkbox"] {
+    position: absolute !important;
+    opacity: 0 !important;
+    cursor: pointer !important;
+    height: 0 !important;
+    width: 0 !important;
+}
+
+.xtremecleans-pet-odor-checkmark {
+    position: absolute !important;
+    left: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 24px !important;
+    height: 24px !important;
+    background: #ffffff !important;
+    border: 2px solid #d0d0d0 !important;
+    border-radius: 6px !important;
+    transition: all 0.2s ease !important;
+}
+
+.xtremecleans-pet-odor-label:hover .xtremecleans-pet-odor-checkmark {
+    border-color: #1b5e20 !important;
+}
+
+.xtremecleans-pet-odor-label input:checked ~ .xtremecleans-pet-odor-checkmark {
+    background: #1b5e20 !important;
+    border-color: #1b5e20 !important;
+}
+
+.xtremecleans-pet-odor-label input:checked ~ .xtremecleans-pet-odor-checkmark::after {
+    content: '✓' !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    color: #ffffff !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+}
+
+.xtremecleans-pet-odor-text {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+}
+
+.xtremecleans-pet-odor-title {
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    color: #1f1f1f !important;
+}
+
+.xtremecleans-pet-odor-desc {
+    font-size: 12px !important;
+    color: #666666 !important;
+    font-weight: 400 !important;
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
 }
 
 @media (max-width: 1024px) {
@@ -2661,6 +2824,15 @@ body .xtremecleans-hero-section:has(~ .xtremecleans-service-selection.active) {
     min-width: 28px !important;
     text-align: center !important;
     font-size: 16px !important;
+<<<<<<< HEAD
+=======
+    font-weight: 700 !important;
+    color: #1f1f1f !important;
+    display: inline-block !important;
+    line-height: 32px !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
 }
 
 #xtremecleans-service-selection .xtremecleans-qty-price,
@@ -2828,6 +3000,10 @@ body .xtremecleans-hero-section:has(~ .xtremecleans-service-selection.active) {
     font-weight: 700 !important;
     text-align: left !important;
     background: #fafafa !important;
+<<<<<<< HEAD
+=======
+    color: #000000 !important;
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
 }
 
 #xtremecleans-service-selection .xtremecleans-slot,
@@ -2943,6 +3119,10 @@ body .xtremecleans-hero-section:has(~ .xtremecleans-service-selection.active) {
     align-items: center !important;
     gap: 8px !important;
     font-weight: 600 !important;
+<<<<<<< HEAD
+=======
+    color: #000000 !important;
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
 }
 
 #xtremecleans-service-selection .legend-dot,
@@ -3832,6 +4012,34 @@ body .xtremecleans-hero-section:has(~ .xtremecleans-service-selection.active) {
     .xtremecleans-popup-btn {
         width: 100% !important;
     }
+<<<<<<< HEAD
+=======
+    #xtremecleans-service-selection .xtremecleans-step-controls,
+    .xtremecleans-service-selection .xtremecleans-step-controls {
+        flex-direction: column !important;
+        gap: 10px !important;
+        align-items: stretch !important;
+    }
+    #xtremecleans-service-selection .xtremecleans-step-btn,
+    .xtremecleans-service-selection .xtremecleans-step-btn {
+        min-width: 0 !important;
+        width: 100% !important;
+        font-size: 14px !important;
+        padding: 6px 15px !important;
+    }
+    #xtremecleans-service-selection .xtremecleans-step-btn.xtremecleans-step-prev,
+    .xtremecleans-service-selection .xtremecleans-step-btn.xtremecleans-step-prev {
+        margin-right: 0 !important;
+    }
+    #xtremecleans-service-selection .xtremecleans-calendar-legend,
+    .xtremecleans-service-selection .xtremecleans-calendar-legend {
+        display: block !important;
+    }
+    #xtremecleans-service-selection .xtremecleans-legend-item,
+    .xtremecleans-service-selection .xtremecleans-legend-item {
+        margin-bottom: 8px !important;
+    }
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
 }
 
 /* Job Duration Section */
@@ -5320,6 +5528,7 @@ body .xtremecleans-hero-section:has(~ .xtremecleans-service-selection.active) {
         font-size: 20px !important;
     }
     
+<<<<<<< HEAD
     .xtremecleans-lead-form-actions {
         flex-direction: column !important;
     }
@@ -5337,6 +5546,30 @@ body .xtremecleans-hero-section:has(~ .xtremecleans-service-selection.active) {
 }
 
 /* Responsive */
+=======
+    #xtremecleans-service-selection .xtremecleans-step-controls,
+    .xtremecleans-service-selection .xtremecleans-step-controls {
+        flex-direction: row !important;
+        gap: 8px !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    #xtremecleans-service-selection .xtremecleans-step-btn,
+    .xtremecleans-service-selection .xtremecleans-step-btn {
+        min-width: 80px !important;
+        width: auto !important;
+        font-size: 13px !important;
+        padding: 10px 16px !important;
+    }
+    #xtremecleans-service-selection .xtremecleans-step-btn.xtremecleans-step-prev,
+    .xtremecleans-service-selection .xtremecleans-step-btn.xtremecleans-step-prev {
+        margin-right: auto !important;
+    }
+    #xtremecleans-service-selection .xtremecleans-step-btn.xtremecleans-step-next,
+    .xtremecleans-service-selection .xtremecleans-step-btn.xtremecleans-step-next {
+        margin-left: auto !important;
+    }
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
 @media (max-width: 1200px) {
     #xtremecleans-service-selection .xtremecleans-service-container,
     .xtremecleans-service-selection .xtremecleans-service-container {
@@ -5506,6 +5739,20 @@ body .xtremecleans-hero-section:has(~ .xtremecleans-service-selection.active) {
     .xtremecleans-service-selection .xtremecleans-calendar-week-range {
         font-size: 12px !important;
     }
+<<<<<<< HEAD
+=======
+    #xtremecleans-quote-popup .xtremecleans-continue-btn,
+.xtremecleans-quote-popup .xtremecleans-continue-btn,
+.xtremecleans-hero-form-content .xtremecleans-continue-btn {
+    padding: 4px 10px !important;
+    font-size: 12px !important;
+}
+#xtremecleans-quote-popup .xtremecleans-continue-btn,
+.xtremecleans-quote-popup .xtremecleans-continue-btn,
+.xtremecleans-hero-form-content .xtremecleans-continue-btn span {
+    font-size: 12px !important;
+
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
 }
 
 /* Stripe Payment Modal Styles */
@@ -5576,3 +5823,7 @@ body .xtremecleans-hero-section:has(~ .xtremecleans-service-selection.active) {
     }
 }
 
+<<<<<<< HEAD
+=======
+}
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)

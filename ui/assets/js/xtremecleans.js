@@ -343,6 +343,7 @@
                     var defaultItemHtml = '<div class="xtremecleans-card-columns">' +
                         '<div class="xtremecleans-card-column">' +
                         '<span class="xtremecleans-card-column-label">Clean</span>' +
+<<<<<<< HEAD
                         '<span class="xtremecleans-card-column-info">i</span>' +
                         '</div>' +
                         '<div class="xtremecleans-card-column">' +
@@ -354,6 +355,20 @@
                         '<span class="xtremecleans-card-column-info">i</span>' +
                         '</div>' +
                         '</div>' +
+=======
+                        '<a href="#" class="xtremecleans-card-column-info xtremecleans-info-tooltip" data-tooltip="Professional deep cleaning service for your selected areas." title="Clean Info">i</a>' +
+                        '</div>' +
+                        '<div class="xtremecleans-card-column">' +
+                        '<span class="xtremecleans-card-column-label">Protect</span>' +
+                        '<a href="#" class="xtremecleans-card-column-info xtremecleans-info-tooltip" data-tooltip="Carpet &amp; fabric protection treatment. Protection applies to ALL selected items — if you choose to protect, all your selected rooms/entries/hallways will be protected. It\'s all or nothing!" title="Protect Info">i</a>' +
+                        '</div>' +
+                        '<div class="xtremecleans-card-column">' +
+                        '<span class="xtremecleans-card-column-label">Deodorize</span>' +
+                        '<a href="#" class="xtremecleans-card-column-info xtremecleans-info-tooltip" data-tooltip="Odor elimination treatment to remove deep-set smells from carpets and upholstery." title="Deodorize Info">i</a>' +
+                        '</div>' +
+                        '</div>' +
+                        '' +
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                         '<div class="xtremecleans-service-cards">' +
                         '<div class="xtremecleans-service-items-loading" style="padding: 20px; text-align: center; color: #666;">Loading service items...</div>' +
                         '</div>';
@@ -463,6 +478,10 @@
                     var price2Value = item.price2_value || item.protect_price || '0';
                     var price3Value = item.price3_value || item.deodorize_price || '0';
                     
+<<<<<<< HEAD
+=======
+                    var itemDuration = item.service_item_duration || 0;
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                     itemsHtml += '<div class="">' +
                         '<div class="xtremecleans-card-header">' +
                         '<div class="xtremecleans-card-name">' + escapedItemName + '</div>' +
@@ -471,7 +490,11 @@
                         '<div class="xtremecleans-card-options">' +
                         '<div class="xtremecleans-card-option">' +
                         '<span class="xtremecleans-option-label">' + escapedPrice1Name + '</span>' +
+<<<<<<< HEAD
                         '<div class="xtremecleans-qty-control" data-service="' + escapedServiceName + '" data-item="' + escapedItemName + '" data-type="' + escapedPrice1Name + '" data-price="' + price1Value + '">' +
+=======
+                        '<div class="xtremecleans-qty-control" data-service="' + escapedServiceName + '" data-item="' + escapedItemName + '" data-type="' + escapedPrice1Name + '" data-price="' + price1Value + '" data-duration="' + itemDuration + '">' +
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                         '<button class="xtremecleans-qty-btn xtremecleans-qty-minus" type="button" aria-label="Remove ' + escapedPrice1Name + '">-</button>' +
                         '<span class="xtremecleans-qty-value">0</span>' +
                         '<button class="xtremecleans-qty-btn xtremecleans-qty-plus" type="button" aria-label="Add ' + escapedPrice1Name + '">+</button>' +
@@ -479,7 +502,11 @@
                         '</div>' +
                         '<div class="xtremecleans-card-option">' +
                         '<span class="xtremecleans-option-label">' + escapedPrice2Name + '</span>' +
+<<<<<<< HEAD
                         '<div class="xtremecleans-qty-control" data-service="' + escapedServiceName + '" data-item="' + escapedItemName + '" data-type="' + escapedPrice2Name + '" data-price="' + price2Value + '">' +
+=======
+                        '<div class="xtremecleans-qty-control" data-service="' + escapedServiceName + '" data-item="' + escapedItemName + '" data-type="' + escapedPrice2Name + '" data-price="' + price2Value + '" data-duration="' + itemDuration + '">' +
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                         '<button class="xtremecleans-qty-btn xtremecleans-qty-minus" type="button" aria-label="Remove ' + escapedPrice2Name + '">-</button>' +
                         '<span class="xtremecleans-qty-value">0</span>' +
                         '<button class="xtremecleans-qty-btn xtremecleans-qty-plus" type="button" aria-label="Add ' + escapedPrice2Name + '">+</button>' +
@@ -487,7 +514,11 @@
                         '</div>' +
                         '<div class="xtremecleans-card-option">' +
                         '<span class="xtremecleans-option-label">' + escapedPrice3Name + '</span>' +
+<<<<<<< HEAD
                         '<div class="xtremecleans-qty-control" data-service="' + escapedServiceName + '" data-item="' + escapedItemName + '" data-type="' + escapedPrice3Name + '" data-price="' + price3Value + '">' +
+=======
+                        '<div class="xtremecleans-qty-control" data-service="' + escapedServiceName + '" data-item="' + escapedItemName + '" data-type="' + escapedPrice3Name + '" data-price="' + price3Value + '" data-duration="' + itemDuration + '">' +
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                         '<button class="xtremecleans-qty-btn xtremecleans-qty-minus" type="button" aria-label="Remove ' + escapedPrice3Name + '">-</button>' +
                         '<span class="xtremecleans-qty-value">0</span>' +
                         '<button class="xtremecleans-qty-btn xtremecleans-qty-plus" type="button" aria-label="Add ' + escapedPrice3Name + '">+</button>' +
@@ -500,6 +531,29 @@
                 // Replace content with items from database
                 $serviceCards.html(itemsHtml);
                 
+<<<<<<< HEAD
+=======
+                // Add Pet Odor checkbox at the bottom of the service panel (if not already present)
+                var $panelBody = $serviceCards.closest('.xtremecleans-panel-body');
+                if ($panelBody.find('.xtremecleans-pet-odor-section').length === 0) {
+                    var petOdorPrice = 50; // Pet Odor Treatment price
+                    var petOdorHtml = '<div class="xtremecleans-pet-odor-section">' +
+                        '<label class="xtremecleans-pet-odor-label">' +
+                        '<input type="checkbox" class="xtremecleans-pet-odor-checkbox" ' +
+                        'data-service="' + escapedServiceName + '" ' +
+                        'data-item="Pet Odor Treatment" ' +
+                        'data-price="' + petOdorPrice + '" />' +
+                        '<span class="xtremecleans-pet-odor-checkmark"></span>' +
+                        '<span class="xtremecleans-pet-odor-text">' +
+                        '<span class="xtremecleans-pet-odor-title">🐾 Pet Odor Treatment</span>' +
+                        '<span class="xtremecleans-pet-odor-desc">Add pet odor elimination treatment — $' + petOdorPrice.toFixed(2) + '</span>' +
+                        '</span>' +
+                        '</label>' +
+                        '</div>';
+                    $panelBody.append(petOdorHtml);
+                }
+                
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                 // Re-initialize quantity controls for dynamically added panels
                 initQuantityControls();
             }
@@ -728,9 +782,21 @@
                 // Determine which input to use based on button context
                 var $button = $(this);
                 var zipCode = '';
+<<<<<<< HEAD
                 
                 // Check if button is in hero form or popup form
                 if ($button.closest('.xtremecleans-hero-form-content').length > 0) {
+=======
+                var $localZipInput = $button
+                    .closest('.xtremecleans-zip-field-wrapper')
+                    .find('.xtremecleans-zip-input')
+                    .first();
+                
+                // Prefer ZIP input next to the clicked button (works for custom shortcode too).
+                if ($localZipInput.length) {
+                    zipCode = $localZipInput.val().trim();
+                } else if ($button.closest('.xtremecleans-hero-form-content').length > 0) {
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                     // Hero form - get ZIP from hero input
                     zipCode = $('#xtremecleans-zip-input-hero').val().trim();
                 } else {
@@ -1006,6 +1072,17 @@
                     $('.xtremecleans-continue-btn').click();
                 }
             });
+<<<<<<< HEAD
+=======
+
+            // Support Enter key for any ZIP input used by shortcode variants.
+            $(document).on('keypress', '.xtremecleans-zip-input', function(e) {
+                if (e.which === 13) {
+                    e.preventDefault();
+                    $(this).closest('.xtremecleans-zip-field-wrapper').find('.xtremecleans-continue-btn').first().trigger('click');
+                }
+            });
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             
             // Handle change ZIP link in service selection
             $(document).on('click', '.xtremecleans-change-link', function(e) {
@@ -1219,6 +1296,21 @@
                 );
             });
 
+<<<<<<< HEAD
+=======
+            // Collect Pet Odor Treatment checkboxes
+            $('.xtremecleans-pet-odor-checkbox:checked').each(function () {
+                var $box = $(this);
+                addEntry(
+                    $box.data('service'),
+                    $box.data('item'),
+                    'Treatment',
+                    1,
+                    $box.data('price')
+                );
+            });
+
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             return {
                 serviceLines: serviceLines,
                 servicesByGroup: servicesByGroup,
@@ -1240,6 +1332,7 @@
                 return 0;
             }
             
+<<<<<<< HEAD
             var rooms = 0;
             var staircases = 0;
             var protectionAreas = 0;
@@ -1333,6 +1426,19 @@
             });
             
             return duration;
+=======
+            // Sum up admin-set durations for selected items
+            var totalDuration = 0;
+            $('.xtremecleans-qty-control').each(function () {
+                var $control = $(this);
+                var qty = parseInt($control.find('.xtremecleans-qty-value').text(), 10);
+                var itemDuration = parseInt($control.data('duration'), 10) || 0;
+                if (qty > 0 && itemDuration > 0) {
+                    totalDuration += itemDuration * qty;
+                }
+            });
+            return totalDuration;
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         }
         
         /**
@@ -1362,6 +1468,7 @@
             var depositText = $('.xtremecleans-deposit-title').text() || '';
             var depositAmount = parseFloat(depositText.replace(/[^0-9.]/g, '')) || 0;
             
+<<<<<<< HEAD
             // Get service charge from ZIP code data
             var $wizard = $('#xtremecleans-service-selection, .xtremecleans-service-selection');
             var serviceFee = parseFloat($wizard.data('service-fee')) || 0;
@@ -1391,6 +1498,20 @@
                 // Use minimum service charge (without adding service fee again)
                 finalGrandTotal = MINIMUM_SERVICE_CHARGE;
             }
+=======
+            // Get service charge from ZIP code data (this is the MINIMUM SERVICE CHARGE, not an add-on)
+            var $wizard = $('#xtremecleans-service-selection, .xtremecleans-service-selection');
+            var serviceFee = parseFloat($wizard.data('service-fee')) || 0;
+            
+            // Service Charge = Minimum Service Charge threshold (NOT added to total)
+            var MINIMUM_SERVICE_CHARGE = serviceFee > 0 ? serviceFee : 199.00;
+            
+            // Grand total = services only (service charge is NOT added)
+            var finalGrandTotal = selection.totalServicesAmount;
+            
+            // Check if services total is below the minimum
+            var isBelowMinimum = finalGrandTotal > 0 && finalGrandTotal < MINIMUM_SERVICE_CHARGE;
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             
             // Calculate job duration
             var durationMinutes = calculateJobDuration();
@@ -1488,6 +1609,61 @@
                 $detail.stop(true, true).slideToggle(200);
             });
 
+<<<<<<< HEAD
+=======
+            // Info tooltip click handler for Clean/Protect/Deodorize "i" icons
+            $(document).off('click', '.xtremecleans-info-tooltip').on('click', '.xtremecleans-info-tooltip', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Remove any existing tooltip popup
+                $('.xtremecleans-tooltip-popup').remove();
+                
+                var tooltipText = $(this).data('tooltip') || '';
+                if (!tooltipText) return;
+                
+                // Create tooltip popup
+                var $popup = $('<div class="xtremecleans-tooltip-popup">' +
+                    '<div class="xtremecleans-tooltip-content">' +
+                    '<span class="xtremecleans-tooltip-close">&times;</span>' +
+                    '<p>' + tooltipText + '</p>' +
+                    '</div></div>');
+                
+                $('body').append($popup);
+                
+                // Position near the clicked icon
+                var offset = $(this).offset();
+                var popupWidth = 280;
+                var left = offset.left - (popupWidth / 2) + 10;
+                var top = offset.top + 30;
+                
+                // Keep within viewport
+                if (left < 10) left = 10;
+                if (left + popupWidth > $(window).width() - 10) {
+                    left = $(window).width() - popupWidth - 10;
+                }
+                
+                $popup.find('.xtremecleans-tooltip-content').css({
+                    left: left + 'px',
+                    top: top + 'px'
+                });
+                
+                $popup.fadeIn(200);
+                
+                // Close on click outside or X button
+                $popup.on('click', function(ev) {
+                    if ($(ev.target).hasClass('xtremecleans-tooltip-popup') || $(ev.target).hasClass('xtremecleans-tooltip-close')) {
+                        $popup.fadeOut(150, function() { $popup.remove(); });
+                    }
+                });
+                
+                // Auto-close after 6 seconds
+                setTimeout(function() {
+                    $popup.fadeOut(150, function() { $popup.remove(); });
+                }, 6000);
+            });
+
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             // Use event delegation for quantity buttons (works with dynamically added elements)
             $(document).off('click', '.xtremecleans-qty-btn').on('click', '.xtremecleans-qty-btn', function (e) {
                 e.preventDefault();
@@ -1496,6 +1672,7 @@
                 var $control = $(this).closest('.xtremecleans-qty-control');
                 var $value = $control.find('.xtremecleans-qty-value');
                 var qty = parseInt($value.text(), 10) || 0;
+<<<<<<< HEAD
 
                 if ($(this).hasClass('xtremecleans-qty-plus')) {
                     // Increase quantity
@@ -1504,6 +1681,66 @@
                     // Decrease quantity (but not below 0)
                     if (qty > 0) {
                         qty -= 1;
+=======
+                var isPlus = $(this).hasClass('xtremecleans-qty-plus');
+                
+                // Get the type of this control and all sibling controls for the same item
+                var currentType = ($control.data('type') || '').toString().toLowerCase();
+                var $allControls = $control.closest('.xtremecleans-card-options').find('.xtremecleans-qty-control');
+                var $cleanControl = $allControls.eq(0);  // First column = Clean (price1)
+                var $protectControl = $allControls.eq(1); // Second column = Protect (price2)
+                
+                // Check if this is a Protect-type control
+                var isProtectType = currentType.indexOf('protect') !== -1;
+                // Check if this is the Clean (first column) control
+                var isCleanType = $control.is($cleanControl);
+                
+                if (isProtectType) {
+                    // --- PROTECT COLUMN: All-or-nothing rule ---
+                    var cleanQty = parseInt($cleanControl.find('.xtremecleans-qty-value').text(), 10) || 0;
+                    
+                    if (isPlus) {
+                        if (cleanQty === 0) {
+                            // Can't add protection without selecting clean first
+                            alert('Please select the number of items to clean first, then add protection.');
+                            return;
+                        }
+                        // Set protect qty to match clean qty (all or nothing)
+                        qty = cleanQty;
+                    } else {
+                        // Clicking minus on protect = remove all protection (set to 0)
+                        qty = 0;
+                    }
+                } else if (isCleanType) {
+                    // --- CLEAN COLUMN: Normal +/- behavior ---
+                    if (isPlus) {
+                        qty += 1;
+                    } else {
+                        if (qty > 0) {
+                            qty -= 1;
+                        }
+                    }
+                    
+                    // If protect is active, auto-sync protect qty to new clean qty
+                    var protectQty = parseInt($protectControl.find('.xtremecleans-qty-value').text(), 10) || 0;
+                    if (protectQty > 0) {
+                        if (qty === 0) {
+                            // Clean dropped to 0, remove protection too
+                            $protectControl.find('.xtremecleans-qty-value').text('0');
+                        } else {
+                            // Auto-update protect to match new clean qty
+                            $protectControl.find('.xtremecleans-qty-value').text(qty);
+                        }
+                    }
+                } else {
+                    // --- OTHER COLUMNS (Deodorize, etc.): Normal +/- behavior ---
+                    if (isPlus) {
+                        qty += 1;
+                    } else {
+                        if (qty > 0) {
+                            qty -= 1;
+                        }
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                     }
                 }
 
@@ -1532,10 +1769,28 @@
                 }
             });
 
+<<<<<<< HEAD
+=======
+            // Pet Odor checkbox handler (event delegation for dynamic checkboxes)
+            $(document).off('change', '.xtremecleans-pet-odor-checkbox').on('change', '.xtremecleans-pet-odor-checkbox', function () {
+                updateQuoteSummary();
+                if (typeof updateServiceInformation === 'function') {
+                    updateServiceInformation();
+                }
+                if (typeof updateSelectionSummary === 'function') {
+                    updateSelectionSummary();
+                }
+            });
+
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             $('.xtremecleans-clear-link').on('click', function (e) {
                 e.preventDefault();
                 $('.xtremecleans-qty-value').text('0');
                 $('.xtremecleans-airduct-checkbox').prop('checked', false);
+<<<<<<< HEAD
+=======
+                $('.xtremecleans-pet-odor-checkbox').prop('checked', false);
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                 // Reset duration display
                 $('.xtremecleans-job-duration').text('0 minutes');
                 $('.xtremecleans-job-duration-minutes').text('0');
@@ -1559,6 +1814,7 @@
                     };
                 });
 
+<<<<<<< HEAD
                 // Get service charge from ZIP code data
                 var $wizard = $('#xtremecleans-service-selection, .xtremecleans-service-selection');
                 var serviceFee = parseFloat($wizard.data('service-fee')) || 0;
@@ -1579,24 +1835,50 @@
                 }
                 
                 // Check if TOTAL (services + service charge) is less than minimum service charge
+=======
+                // Get service charge from ZIP code data (this is the MINIMUM SERVICE CHARGE, not an add-on)
+                var $wizard = $('#xtremecleans-service-selection, .xtremecleans-service-selection');
+                var serviceFee = parseFloat($wizard.data('service-fee')) || 0;
+                
+                // Service Charge = Minimum Service Charge threshold (NOT added to total)
+                var MINIMUM_SERVICE_CHARGE = serviceFee > 0 ? serviceFee : 199.00;
+                
+                // Total = services only (service charge is NOT added)
+                var total = totalServicesAmount;
+                
+                // Check if services total is below the minimum service charge
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                 var isBelowMinimum = total > 0 && total < MINIMUM_SERVICE_CHARGE;
                 
                 // If services are selected
                 if (totalServicesAmount > 0) {
+<<<<<<< HEAD
                     // If total (with service charge) is below minimum, show notification (but not popup)
                     if (isBelowMinimum) {
                         // Show warning notification only (no popup)
                         // Show total including service charge in warning message
+=======
+                    if (isBelowMinimum) {
+                        // Show warning: services total is below minimum
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                         $('.xtremecleans-minimum-charge-warning').fadeIn(300);
                         $('.xtremecleans-current-services-total').text('$' + total.toFixed(2));
                         $('.xtremecleans-warning-minimum-amount').text('$' + MINIMUM_SERVICE_CHARGE.toFixed(2));
                         $('.xtremecleans-warning-final-amount').text('$' + MINIMUM_SERVICE_CHARGE.toFixed(2));
                     } else {
+<<<<<<< HEAD
                         // Total (with service charge) meets or exceeds minimum ($199 or more)
                         $('.xtremecleans-minimum-charge-warning').fadeOut(300);
                     }
                 } else {
                     // No services selected, hide warning (popup will show on Next click)
+=======
+                        // Services total meets or exceeds minimum
+                        $('.xtremecleans-minimum-charge-warning').fadeOut(300);
+                    }
+                } else {
+                    // No services selected, hide warning
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                     $('.xtremecleans-minimum-charge-warning').fadeOut(300);
                 }
 
@@ -1638,16 +1920,25 @@
             }
             
             function updateServiceInformation() {
+<<<<<<< HEAD
                 // Get service charge from ZIP code data
                 var $wizard = $('#xtremecleans-service-selection, .xtremecleans-service-selection');
                 var serviceFee = parseFloat($wizard.data('service-fee')) || 0;
                 
                 // Minimum service charge = Service Fee value (or $199 if service fee is 0)
+=======
+                // Get service charge from ZIP code data (this is the MINIMUM SERVICE CHARGE, not an add-on)
+                var $wizard = $('#xtremecleans-service-selection, .xtremecleans-service-selection');
+                var serviceFee = parseFloat($wizard.data('service-fee')) || 0;
+                
+                // Service Charge = Minimum Service Charge threshold (NOT added to total)
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                 var MINIMUM_SERVICE_CHARGE = serviceFee > 0 ? serviceFee : 199.00;
                 
                 var selection = collectSelectedServicesData();
                 var totalServicesAmount = selection.totalServicesAmount;
                 
+<<<<<<< HEAD
                 // Calculate total with service charge
                 var totalWithServiceCharge = totalServicesAmount;
                 if (totalServicesAmount > 0 && serviceFee > 0) {
@@ -1665,6 +1956,14 @@
                     } else {
                         $('.xtremecleans-review-service-charge').text('$0.00');
                     }
+=======
+                // Check if services total is below the minimum
+                var isBelowMinimum = totalServicesAmount > 0 && totalServicesAmount < MINIMUM_SERVICE_CHARGE;
+                
+                // Display minimum service charge info (for reference, not added to total)
+                if (selection.totalServicesAmount > 0) {
+                    $('.xtremecleans-review-service-charge').text('$' + MINIMUM_SERVICE_CHARGE.toFixed(2) + ' (minimum)');
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                 } else {
                     $('.xtremecleans-review-service-charge').text('-');
                 }
@@ -1711,6 +2010,7 @@
                 // This should show just the services amount, not including service charge
                 $('.xtremecleans-review-total-services-amount').text('$' + totalServicesAmount.toFixed(2));
                 
+<<<<<<< HEAD
                 // Calculate final total: services + service charge
                 var finalTotal = totalServicesAmount;
                 
@@ -1725,6 +2025,12 @@
                 }
                 
                 // Update other total amount displays (if any) with final total including service charge
+=======
+                // Total = services only (service charge is NOT added to price)
+                var finalTotal = totalServicesAmount;
+                
+                // Update total amount displays
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                 $('.xtremecleans-review-total-amount').not('.xtremecleans-review-total-services-amount').text('$' + finalTotal.toFixed(2));
             }
             
@@ -1793,6 +2099,14 @@
                 // Expose setStep function globally for use by other handlers
                 window.xtremecleansSetStep = setStep;
                 
+<<<<<<< HEAD
+=======
+                // Stop calendar auto-refresh when leaving Step 2
+                if (currentStep !== 2 && typeof stopCalendarAutoRefresh === 'function') {
+                    stopCalendarAutoRefresh();
+                }
+                
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                 // If moving to step 2, generate dynamic calendar
                 if (currentStep === 2) {
                     // Reset week start when entering Step 2
@@ -1803,6 +2117,13 @@
                         if ($calendar.length > 0) {
                             console.log('Step 2 activated, generating calendar...');
                             generateDynamicCalendar();
+<<<<<<< HEAD
+=======
+                            // Start auto-refresh for live Jobber booking updates (every 60s)
+                            if (typeof startCalendarAutoRefresh === 'function') {
+                                startCalendarAutoRefresh();
+                            }
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                         } else {
                             console.error('Calendar container not found when Step 2 activated');
                         }
@@ -1882,6 +2203,65 @@
             var currentWeekStart = null;
             var isGeneratingCalendar = false; // Guard to prevent multiple simultaneous calls
             
+<<<<<<< HEAD
+=======
+            // Cache Jobber availability so we only fetch once per page load
+            var cachedJobberAvailability = null;
+            
+            function fetchJobberAvailability(callback) {
+                // Return cached if available
+                if (cachedJobberAvailability) {
+                    callback(cachedJobberAvailability);
+                    return;
+                }
+                
+                $.ajax({
+                    url: typeof xtremecleansData !== 'undefined' ? xtremecleansData.ajaxUrl : '',
+                    type: 'GET',
+                    data: {
+                        action: 'xtremecleans_get_jobber_availability'
+                    },
+                    success: function(res) {
+                        if (res && res.success && res.data) {
+                            cachedJobberAvailability = res.data;
+                            console.log('Jobber availability loaded (source: ' + (res.data.source || 'unknown') + '):', res.data);
+                        } else {
+                            // Fallback defaults
+                            cachedJobberAvailability = {
+                                arrival_windows: [
+                                    { start: 8, end: 9, label: '8:00 AM - 9:00 AM' },
+                                    { start: 11, end: 14, label: '11:00 AM - 2:00 PM' },
+                                    { start: 14.5, end: 17, label: '2:30 PM - 5:00 PM' }
+                                ],
+                                working_days: [1, 2, 3, 4, 5],
+                                workday_start: 8,
+                                workday_end: 17,
+                                source: 'fallback'
+                            };
+                            console.log('Using fallback availability (API returned no data)');
+                        }
+                        callback(cachedJobberAvailability);
+                    },
+                    error: function() {
+                        // Fallback defaults on error
+                        cachedJobberAvailability = {
+                            arrival_windows: [
+                                { start: 8, end: 9, label: '8:00 AM - 9:00 AM' },
+                                { start: 11, end: 14, label: '11:00 AM - 2:00 PM' },
+                                { start: 14.5, end: 17, label: '2:30 PM - 5:00 PM' }
+                            ],
+                            working_days: [1, 2, 3, 4, 5],
+                            workday_start: 8,
+                            workday_end: 17,
+                            source: 'fallback'
+                        };
+                        console.log('Using fallback availability (API error)');
+                        callback(cachedJobberAvailability);
+                    }
+                });
+            }
+            
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             function generateDynamicCalendar(weekOffset) {
                 // Prevent multiple simultaneous calls
                 if (isGeneratingCalendar) {
@@ -1905,10 +2285,26 @@
                 // Set guard flag
                 isGeneratingCalendar = true;
                 
+<<<<<<< HEAD
                 // Use try-finally to ensure flag is reset even on errors
                 try {
                 
                 console.log('Generating calendar, weekOffset:', weekOffset);
+=======
+                // Fetch dynamic availability from Jobber, then build calendar
+                fetchJobberAvailability(function(availability) {
+                    try {
+                        buildCalendarWithAvailability(weekOffset, availability, $calendar);
+                    } catch (error) {
+                        console.error('Error generating calendar:', error);
+                        isGeneratingCalendar = false;
+                    }
+                });
+            }
+            
+            function buildCalendarWithAvailability(weekOffset, availability, $calendar) {
+                console.log('Building calendar with dynamic availability...');
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                 
                 // Calculate week start (Monday)
                 var today = new Date();
@@ -1931,6 +2327,7 @@
                     currentWeekStart.setDate(currentWeekStart.getDate() + (weekOffset * 7));
                 }
                 
+<<<<<<< HEAD
                 // SECTION 1 — WORKDAY RULES
                 // Workday is 8:00 AM – 5:00 PM
                 // No job may start before 8:00 AM or end after 5:00 PM
@@ -1955,12 +2352,31 @@
                         end: 17,     // 5:00 PM
                         label: '2:30 PM - 5:00 PM'
                     }
+=======
+                // DYNAMIC: Use Jobber-derived workday settings (or defaults)
+                var workdayStart = availability.workday_start || 8;
+                var workdayEnd = availability.workday_end || 17;
+                
+                // DYNAMIC: Use Jobber-derived working days (default Mon-Fri)
+                // working_days array: 0=Sun, 1=Mon...6=Sat
+                var workingDays = availability.working_days || [1, 2, 3, 4, 5];
+                
+                // DYNAMIC: Use Jobber-derived arrival windows (or defaults)
+                var arrivalWindows = availability.arrival_windows || [
+                    { start: 8, end: 9, label: '8:00 AM - 9:00 AM' },
+                    { start: 11, end: 14, label: '11:00 AM - 2:00 PM' },
+                    { start: 14.5, end: 17, label: '2:30 PM - 5:00 PM' }
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                 ];
                 
                 // Generate time slots based on arrival windows
                 var timeSlots = [];
                 arrivalWindows.forEach(function(window) {
+<<<<<<< HEAD
                     // Ensure window fits within workday boundary (8 AM - 5 PM)
+=======
+                    // Ensure window fits within workday boundary
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                     var windowStart = Math.max(window.start, workdayStart);
                     var windowEnd = Math.min(window.end, workdayEnd);
                     
@@ -1975,8 +2391,14 @@
                 });
                 
                 // Debug: Log generated time slots
+<<<<<<< HEAD
                 console.log('Generated Arrival Windows:', timeSlots.map(function(s) { return s.label; }));
                 console.log('Workday: 8:00 AM - 5:00 PM');
+=======
+                console.log('Dynamic Arrival Windows:', timeSlots.map(function(s) { return s.label; }));
+                console.log('Workday: ' + workdayStart + ':00 - ' + workdayEnd + ':00 (source: ' + (availability.source || 'unknown') + ')');
+                console.log('Working Days:', workingDays);
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                 
                 // Generate days for the week
                 var days = [];
@@ -1989,11 +2411,23 @@
                     var dateOnly = new Date(date.getFullYear(), date.getMonth(), date.getDate());
                     var isPast = dateOnly < todayDateOnly;
                     
+<<<<<<< HEAD
                     days.push({
                         date: date,
                         dayName: dayNames[i],
                         dayOfWeek: date.getDay(),
                         isWeekend: date.getDay() === 0 || date.getDay() === 6,
+=======
+                    // DYNAMIC: Check if this day is a working day (based on Jobber data)
+                    var jsDay = date.getDay(); // 0=Sun, 1=Mon...6=Sat
+                    var isOffDay = workingDays.indexOf(jsDay) === -1; // Not in working days list
+                    
+                    days.push({
+                        date: date,
+                        dayName: dayNames[i],
+                        dayOfWeek: jsDay,
+                        isWeekend: isOffDay, // Renamed from isWeekend to isOffDay logic
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                         isPast: isPast
                     });
                 }
@@ -2034,6 +2468,10 @@
                 
                 var weekStartYmd = formatDate(days[0].date);
                 var weekEndYmd = formatDate(days[6].date);
+<<<<<<< HEAD
+=======
+                var slotCapacity = 1;
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                 
                 function buildCalendarBody(bookedSlotsMap) {
                     $body.empty();
@@ -2044,9 +2482,24 @@
                         days.forEach(function(day) {
                             var $cell = $('<td></td>');
                             var slotKey = formatDate(day.date) + '|' + slot.label;
+<<<<<<< HEAD
                             var isBooked = bookedSlotsMap[slotKey];
                             
                             // Saturday and Sunday are closed
+=======
+                            var bookedCount = parseInt(bookedSlotsMap[slotKey], 10) || 0;
+                            var isBooked = bookedCount >= slotCapacity;
+                            var isToday = !day.isPast && day.date.toDateString() === today.toDateString();
+                            var bookingLabel = '';
+                            if (slotCapacity > 1 && bookedCount > 0) {
+                                bookingLabel = '<div class="xtremecleans-slot-capacity-label" style="font-size:10px;line-height:1.2;margin-top:4px;color:#1d2327;text-align:center;font-weight:600;">Booked: ' + bookedCount + '/' + slotCapacity + '</div>';
+                            }
+                            var availTitle = (slotCapacity > 1 && bookedCount > 0)
+                                ? ('Booked ' + bookedCount + '/' + slotCapacity + ' — click to select')
+                                : 'Click to select';
+                            
+                            // Off-days (weekends or non-working days from Jobber) are closed
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                             if (day.isWeekend) {
                                 $cell.addClass('xtremecleans-slot unavailable closed');
                                 $cell.attr('title', 'Closed');
@@ -2056,6 +2509,7 @@
                                 $cell.addClass('xtremecleans-slot unavailable past');
                                 $cell.attr('title', 'Past date');
                             }
+<<<<<<< HEAD
                             // Already booked by someone else
                             else if (isBooked) {
                                 $cell.addClass('xtremecleans-slot unavailable booked');
@@ -2097,6 +2551,66 @@
                                     $cell.attr('data-date', formatDate(day.date));
                                     $cell.attr('data-time', slot.label);
                                     $cell.attr('title', 'Click to select');
+=======
+                            // Today — check time first, then booked status
+                            else if (isToday) {
+                                var now = new Date();
+                                var currentTimeDecimal = now.getHours() + (now.getMinutes() / 60);
+                                
+                                // Time slot already passed — show as "past" (not "booked")
+                                if (currentTimeDecimal >= slot.start) {
+                                    $cell.addClass('xtremecleans-slot unavailable past');
+                                    $cell.attr('title', 'Time slot has passed');
+                                }
+                                // Future slot today that is booked in Jobber/WP
+                                else if (isBooked) {
+                                    $cell.addClass('xtremecleans-slot unavailable booked');
+                                    $cell.attr('title', 'Booked (' + bookedCount + '/' + slotCapacity + ')');
+                                    if (bookingLabel) {
+                                        $cell.append(bookingLabel);
+                                    }
+                                }
+                                // Outside workday hours
+                                else if (slot.start < workdayStart || slot.end > workdayEnd) {
+                                    $cell.addClass('xtremecleans-slot unavailable');
+                                    $cell.attr('title', 'Outside workday hours');
+                                }
+                                // Available today
+                                else {
+                                    $cell.addClass('xtremecleans-slot available');
+                                    $cell.append('<span class="xtremecleans-slot-dot"></span>');
+                                    if (bookingLabel) {
+                                        $cell.append(bookingLabel);
+                                    }
+                                    $cell.attr('data-date', formatDate(day.date));
+                                    $cell.attr('data-time', slot.label);
+                                    $cell.attr('title', availTitle);
+                                    $cell.on('click', function() { selectCalendarSlot($(this), day, slot); });
+                                }
+                            }
+                            // Future dates — already booked by someone else
+                            else if (isBooked) {
+                                $cell.addClass('xtremecleans-slot unavailable booked');
+                                $cell.attr('title', 'Booked (' + bookedCount + '/' + slotCapacity + ')');
+                                if (bookingLabel) {
+                                    $cell.append(bookingLabel);
+                                }
+                            }
+                            // Future dates — available slots
+                            else {
+                                if (slot.start < workdayStart || slot.end > workdayEnd) {
+                                    $cell.addClass('xtremecleans-slot unavailable');
+                                    $cell.attr('title', 'Outside workday hours');
+                                } else {
+                                    $cell.addClass('xtremecleans-slot available');
+                                    $cell.append('<span class="xtremecleans-slot-dot"></span>');
+                                    if (bookingLabel) {
+                                        $cell.append(bookingLabel);
+                                    }
+                                    $cell.attr('data-date', formatDate(day.date));
+                                    $cell.attr('data-time', slot.label);
+                                    $cell.attr('title', availTitle);
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                                     $cell.on('click', function() { selectCalendarSlot($(this), day, slot); });
                                 }
                             }
@@ -2107,6 +2621,28 @@
                     });
                     $calendar.show();
                     $('.xtremecleans-calendar-week-range').text(weekStartStr + ' - ' + weekEndStr);
+<<<<<<< HEAD
+=======
+                    
+                    // Restore selected slot after rebuild (preserves selection during auto-refresh)
+                    var savedSlot = sessionStorage.getItem('xtremecleans_selected_slot');
+                    if (savedSlot) {
+                        try {
+                            var parsed = JSON.parse(savedSlot);
+                            var $savedCell = $body.find('.xtremecleans-slot.available[data-date="' + parsed.date + '"][data-time="' + parsed.time + '"]');
+                            if ($savedCell.length > 0) {
+                                $savedCell.addClass('selected');
+                            } else {
+                                // Slot no longer available (booked by someone else) — clear selection
+                                sessionStorage.removeItem('xtremecleans_selected_slot');
+                                if (typeof updateSelectionSummary === 'function') {
+                                    updateSelectionSummary();
+                                }
+                            }
+                        } catch (e) {}
+                    }
+                    
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                     isGeneratingCalendar = false;
                 }
                 
@@ -2120,10 +2656,35 @@
                     },
                     success: function(res) {
                         var booked = {};
+<<<<<<< HEAD
                         if (res && res.data && res.data.booked_slots && res.data.booked_slots.length) {
                             res.data.booked_slots.forEach(function(s) {
                                 booked[(s.date || '') + '|' + (s.time || '')] = true;
                             });
+=======
+                        if (res && res.data) {
+                            slotCapacity = parseInt(res.data.slot_capacity, 10) || 1;
+                            if (slotCapacity < 1) {
+                                slotCapacity = 1;
+                            }
+
+                            // Preferred: backend provides exact count per slot.
+                            if (res.data.slot_counts && typeof res.data.slot_counts === 'object') {
+                                Object.keys(res.data.slot_counts).forEach(function(key) {
+                                    var slot = res.data.slot_counts[key] || {};
+                                    booked[key] = parseInt(slot.count, 10) || 0;
+                                });
+                            } else if (res.data.booked_slots && res.data.booked_slots.length) {
+                                // Backward compatibility: derive counts from flat list.
+                                res.data.booked_slots.forEach(function(s) {
+                                    var key = (s.date || '') + '|' + (s.time || '');
+                                    if (!booked[key]) {
+                                        booked[key] = 0;
+                                    }
+                                    booked[key]++;
+                                });
+                            }
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                         }
                         buildCalendarBody(booked);
                     },
@@ -2131,6 +2692,7 @@
                         buildCalendarBody({});
                     }
                 });
+<<<<<<< HEAD
                 
                 } catch (error) {
                     console.error('Error generating calendar:', error);
@@ -2142,6 +2704,17 @@
             window.xtremecleansGenerateCalendar = function() {
                 console.log('Manual calendar generation triggered');
                 currentWeekStart = null;
+=======
+            }
+            
+            // Global function for testing (can be called from console)
+            window.xtremecleansGenerateCalendar = function(forceRefresh) {
+                console.log('Manual calendar generation triggered' + (forceRefresh ? ' (force refresh)' : ''));
+                currentWeekStart = null;
+                if (forceRefresh) {
+                    cachedJobberAvailability = null; // Force re-fetch from Jobber
+                }
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                 generateDynamicCalendar();
             };
             
@@ -2267,13 +2840,77 @@
              * Initialize calendar navigation
              */
             $(document).on('click', '.xtremecleans-calendar-prev', function() {
+<<<<<<< HEAD
+=======
+                // Prevent navigating to past weeks
+                if (currentWeekStart) {
+                    var now = new Date();
+                    now.setHours(0, 0, 0, 0);
+                    var dow = now.getDay();
+                    var daysToMon = dow === 0 ? -6 : 1 - dow;
+                    var thisWeekMon = new Date(now);
+                    thisWeekMon.setDate(now.getDate() + daysToMon);
+                    
+                    var prevWeekStart = new Date(currentWeekStart);
+                    prevWeekStart.setDate(prevWeekStart.getDate() - 7);
+                    
+                    if (prevWeekStart < thisWeekMon) {
+                        return; // Can't go to past weeks
+                    }
+                }
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                 generateDynamicCalendar(-1);
             });
             
             $(document).on('click', '.xtremecleans-calendar-next', function() {
+<<<<<<< HEAD
                 generateDynamicCalendar(1);
             });
             
+=======
+                // Limit to 12 weeks ahead
+                if (currentWeekStart) {
+                    var now = new Date();
+                    now.setHours(0, 0, 0, 0);
+                    var maxDate = new Date(now);
+                    maxDate.setDate(maxDate.getDate() + 84); // 12 weeks
+                    
+                    var nextWeekStart = new Date(currentWeekStart);
+                    nextWeekStart.setDate(nextWeekStart.getDate() + 7);
+                    
+                    if (nextWeekStart > maxDate) {
+                        return; // Can't go more than 12 weeks ahead
+                    }
+                }
+                generateDynamicCalendar(1);
+            });
+            
+            // ── Auto-refresh booked slots every 60s for live Jobber updates ──
+            var calendarRefreshInterval = null;
+            
+            function startCalendarAutoRefresh() {
+                stopCalendarAutoRefresh();
+                calendarRefreshInterval = setInterval(function() {
+                    var $step2 = $('[data-step="2"]');
+                    if ($step2.length > 0 && ($step2.hasClass('active') || $step2.is(':visible'))) {
+                        // Don't reset currentWeekStart — refresh the same week view
+                        if (!isGeneratingCalendar) {
+                            generateDynamicCalendar(0);
+                        }
+                    } else {
+                        stopCalendarAutoRefresh();
+                    }
+                }, 60000); // 60 seconds
+            }
+            
+            function stopCalendarAutoRefresh() {
+                if (calendarRefreshInterval) {
+                    clearInterval(calendarRefreshInterval);
+                    calendarRefreshInterval = null;
+                }
+            }
+            
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             // Initialize calendar on page load if Step 2 is visible
             function tryGenerateCalendar() {
                 // Prevent excessive calls - only check if not already generating
@@ -2529,6 +3166,14 @@
                 if (currentStep === 1 && !validateStep1MinimumCharge()) {
                     return;
                 }
+<<<<<<< HEAD
+=======
+
+                // Validate step 2 (appointment slot) before proceeding to step 3
+                if (currentStep === 2 && !validateStep2Appointment()) {
+                    return;
+                }
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                 
                 // Validate step 3 before proceeding to step 4
                 if (currentStep === 3 && !validateStep3()) {
@@ -2542,6 +3187,34 @@
                 }
             });
             
+<<<<<<< HEAD
+=======
+            function validateStep2Appointment() {
+                var slotData = null;
+                try {
+                    slotData = sessionStorage.getItem('xtremecleans_selected_slot');
+                } catch (e) {}
+                
+                if (!slotData) {
+                    alert('Please select an appointment date and arrival window before continuing to Step 3.');
+                    return false;
+                }
+                
+                try {
+                    var parsed = JSON.parse(slotData);
+                    if (!parsed || !parsed.date || !parsed.time) {
+                        alert('Please select an appointment date and arrival window before continuing to Step 3.');
+                        return false;
+                    }
+                } catch (e) {
+                    alert('Please select an appointment date and arrival window before continuing to Step 3.');
+                    return false;
+                }
+                
+                return true;
+            }
+            
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             function validateStep1MinimumCharge() {
                 var selection = collectSelectedServicesData();
                 var totalServicesAmount = selection.totalServicesAmount;
@@ -2558,6 +3231,7 @@
                     showMinimumChargePopup('Please select at least one service to continue. Minimum service charge is $' + MINIMUM_SERVICE_CHARGE.toFixed(2) + ', so please select additional items. Otherwise, any services less than that amount, will be changed to become $' + MINIMUM_SERVICE_CHARGE.toFixed(2) + '.');
                     return false; // Prevent proceeding
                 }
+<<<<<<< HEAD
                 
                 // Calculate total with service charge
                 var totalWithServiceCharge = totalServicesAmount;
@@ -2568,6 +3242,17 @@
                 // Check if TOTAL (services + service charge) is less than minimum service charge
                 if (totalWithServiceCharge > 0 && totalWithServiceCharge < MINIMUM_SERVICE_CHARGE) {
                     showMinimumChargePopup('Minimum service charge is $' + MINIMUM_SERVICE_CHARGE.toFixed(2) + ', so please select additional items. Otherwise, any services less than that amount, will be changed to become $' + MINIMUM_SERVICE_CHARGE.toFixed(2) + '.');
+=======
+
+                // IMPORTANT: compare selected services total directly against minimum threshold.
+                // Do NOT add serviceFee here; serviceFee is the minimum threshold value.
+                if (totalServicesAmount > 0 && totalServicesAmount < MINIMUM_SERVICE_CHARGE) {
+                    showMinimumChargePopup(
+                        'Your selected services total $' + totalServicesAmount.toFixed(2) +
+                        ', which is less than the minimum service charge of $' + MINIMUM_SERVICE_CHARGE.toFixed(2) +
+                        '. Please select additional items to continue.'
+                    );
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                     return false; // Prevent proceeding
                 }
                 

@@ -44,11 +44,31 @@ if (!defined('ABSPATH')) {
     margin-right: auto !important;
     float: none !important;
 }
+<<<<<<< HEAD
 </style>
 
 <div class="wrap xtremecleans-admin-wrap xtremecleans-leads-page">
     <div class="xtremecleans-leads-header">
         <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
+=======
+.xtremecleans-page-title {
+    font-size: 38px !important;
+    font-weight: 600 !important;
+    padding-top: 30px !important;
+}
+.xtremecleans-leads-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 20px !important;
+}
+</style>
+
+<div class="wrap xtremecleans-admin-wrap xtremecleans-leads-page">
+            <h1 class="xtremecleans-page-title"><?php echo esc_html(get_admin_page_title()); ?></h1>
+    <div class="xtremecleans-leads-header">
+
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         <div class="xtremecleans-page-nav">
             <a href="<?php echo esc_url(admin_url('admin.php?page=xtremecleans')); ?>" class="xtremecleans-nav-link"><?php esc_html_e('Dashboard', 'xtremecleans'); ?></a>
             <span class="xtremecleans-nav-separator">|</span>
@@ -300,7 +320,11 @@ jQuery(document).ready(function($) {
     
     // Export leads
     $('#export-leads').on('click', function() {
+<<<<<<< HEAD
         window.location.href = '<?php echo esc_url(admin_url('admin-post.php?action=xtremecleans_export_leads')); ?>';
+=======
+        window.location.href = '<?php echo esc_url(wp_nonce_url(admin_url('admin-post.php?action=xtremecleans_export_leads'), 'xtremecleans_export_leads')); ?>';
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
     });
 });
 </script>
