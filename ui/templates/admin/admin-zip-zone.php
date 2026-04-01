@@ -58,11 +58,25 @@ foreach ($zone_names as $zone_name_label) {
     margin-right: auto !important;
     float: none !important;
 }
+<<<<<<< HEAD
 </style>
 
 <div class="wrap xtremecleans-zip-zone-page">
     <div class="xtremecleans-page-header-nav">
         <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
+=======
+.xtremecleans-page-title {
+    font-size: 38px !important;
+    font-weight: 600 !important;
+    padding-top: 30px !important;
+}
+</style>
+
+<div class="wrap xtremecleans-zip-zone-page">
+            <h1 class="xtremecleans-page-title"><?php echo esc_html(get_admin_page_title()); ?></h1>
+    <div class="xtremecleans-page-header-nav">
+
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         <div class="xtremecleans-page-nav">
             <a href="<?php echo esc_url(admin_url('admin.php?page=xtremecleans')); ?>" class="xtremecleans-nav-link"><?php esc_html_e('Dashboard', 'xtremecleans'); ?></a>
             <span class="xtremecleans-nav-separator">|</span>
@@ -94,8 +108,12 @@ foreach ($zone_names as $zone_name_label) {
                 <div class="xtremecleans-form-field xtremecleans-service-select-field">
                     <label for="service_name"><?php esc_html_e('Service Name', 'xtremecleans'); ?></label>
                     <div class="xtremecleans-service-select-wrapper">
+<<<<<<< HEAD
                         <select name="service_name" id="service_name" class="xtremecleans-input"<?php echo empty($service_names) ? ' disabled' : ' required'; ?>>
                             <option value=""><?php esc_html_e('Select service', 'xtremecleans'); ?></option>
+=======
+                        <select name="service_name[]" id="service_name" class="xtremecleans-input" multiple size="6"<?php echo empty($service_names) ? ' disabled' : ' required'; ?>>
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                             <?php if (!empty($service_names)) : ?>
                             <?php foreach ($service_names as $name) : ?>
                                 <option value="<?php echo esc_attr($name); ?>"><?php echo esc_html($name); ?></option>
@@ -107,7 +125,11 @@ foreach ($zone_names as $zone_name_label) {
                         </button>
                     </div>
                     <p class="description">
+<<<<<<< HEAD
                         <?php esc_html_e('Service names come from the Service Items page. Create or update services there, then refresh this list.', 'xtremecleans'); ?>
+=======
+                        <?php esc_html_e('Service names come from the Service Items page. Create or update services there, then refresh this list. Hold Ctrl (Windows) or Command (Mac) to select more than one.', 'xtremecleans'); ?>
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                     </p>
                 </div>
                 
@@ -134,6 +156,7 @@ foreach ($zone_names as $zone_name_label) {
                 
                 <div class="xtremecleans-form-field">
                     <label for="zip_code"><?php esc_html_e('ZIP Code', 'xtremecleans'); ?></label>
+<<<<<<< HEAD
                     <input type="text" 
                            name="zip_code" 
                            id="zip_code" 
@@ -142,6 +165,16 @@ foreach ($zone_names as $zone_name_label) {
                            maxlength="5" 
                            pattern="[0-9]{5}" 
                            required>
+=======
+                    <textarea
+                           name="zip_code"
+                           id="zip_code"
+                           class="xtremecleans-input xtremecleans-multi-zip-input"
+                           rows="3"
+                           placeholder="<?php esc_attr_e('12345, 12346', 'xtremecleans'); ?>"
+                           required></textarea>
+                    <p class="description"><?php esc_html_e('Enter one or more 5-digit ZIP codes separated by commas or new lines.', 'xtremecleans'); ?></p>
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                 </div>
                 
                 <div class="xtremecleans-form-field">
@@ -449,6 +482,18 @@ foreach ($zone_names as $zone_name_label) {
     flex: 1;
 }
 
+<<<<<<< HEAD
+=======
+.xtremecleans-service-select-wrapper select[multiple] {
+    min-height: 140px;
+}
+
+.xtremecleans-multi-zip-input {
+    min-height: 88px;
+    resize: vertical;
+}
+
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
 #xtremecleans-refresh-services {
     flex: 0 0 auto;
     border-radius: 999px;
@@ -890,8 +935,15 @@ jQuery(document).ready(function($) {
     var serviceNames = <?php echo json_encode(array_values($service_names)); ?>;
     var serviceSelectPlaceholder = '<?php echo esc_js(__('Select service', 'xtremecleans')); ?>';
     var serviceSelectEmptyText = '<?php echo esc_js(__('No services available yet. Please add service items first.', 'xtremecleans')); ?>';
+<<<<<<< HEAD
     var serviceSelectRequiredMessage = '<?php echo esc_js(__('Please select a service name before adding a ZIP code.', 'xtremecleans')); ?>';
     var serviceSelectDisabledMessage = '<?php echo esc_js(__('Please create a service under Service Items before adding ZIP data.', 'xtremecleans')); ?>';
+=======
+    var serviceSelectRequiredMessage = '<?php echo esc_js(__('Please select at least one service name before adding ZIP codes.', 'xtremecleans')); ?>';
+    var serviceSelectDisabledMessage = '<?php echo esc_js(__('Please create a service under Service Items before adding ZIP data.', 'xtremecleans')); ?>';
+    var zipCodeRequiredMessage = '<?php echo esc_js(__('Please enter at least one ZIP code.', 'xtremecleans')); ?>';
+    var zipCodeInvalidMessage = '<?php echo esc_js(__('Each ZIP code must be exactly 5 digits.', 'xtremecleans')); ?>';
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
     var servicePreviewEmptyText = '<?php echo esc_js(__('Choose a service above to preview its items.', 'xtremecleans')); ?>';
     var servicePreviewNoItemsText = '<?php echo esc_js(__('No items found for this service yet.', 'xtremecleans')); ?>';
     var servicePreviewLoadingText = '<?php echo esc_js(__('Loading service items...', 'xtremecleans')); ?>';
@@ -918,6 +970,78 @@ jQuery(document).ready(function($) {
     function escapeHtml(value) {
         return $('<div>').text(value || '').html();
     }
+<<<<<<< HEAD
+=======
+
+    function normalizeServiceValues(values) {
+        var normalized = [];
+        var seen = {};
+
+        if (!Array.isArray(values)) {
+            values = typeof values === 'undefined' || values === null || values === '' ? [] : [values];
+        }
+
+        values.forEach(function(value) {
+            var label = value ? String(value).trim() : '';
+            if (!label) {
+                return;
+            }
+            var key = label.toLowerCase();
+            if (seen[key]) {
+                return;
+            }
+            seen[key] = true;
+            normalized.push(label);
+        });
+
+        return normalized;
+    }
+
+    function getSelectedServiceNames($select) {
+        if (!$select || !$select.length) {
+            return [];
+        }
+
+        var selected = $select.val();
+        return normalizeServiceValues(Array.isArray(selected) ? selected : (selected ? [selected] : []));
+    }
+
+    function parseZipCodes(rawValue) {
+        var source = '';
+        if (Array.isArray(rawValue)) {
+            source = rawValue.join(',');
+        } else if (typeof rawValue !== 'undefined' && rawValue !== null) {
+            source = String(rawValue);
+        }
+
+        var tokens = source.split(/[\s,;]+/);
+        var values = [];
+        var invalid = [];
+        var seen = {};
+
+        tokens.forEach(function(token) {
+            var zip = token ? token.trim() : '';
+            if (!zip) {
+                return;
+            }
+
+            if (!/^[0-9]{5}$/.test(zip)) {
+                invalid.push(zip);
+                return;
+            }
+
+            if (!seen[zip]) {
+                seen[zip] = true;
+                values.push(zip);
+            }
+        });
+
+        return {
+            values: values,
+            invalid: invalid
+        };
+    }
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
     
     function normalizeZoneValue(value) {
         return value ? String(value).trim().toLowerCase() : '';
@@ -985,7 +1109,17 @@ jQuery(document).ready(function($) {
             return;
         }
         includePlaceholder = includePlaceholder !== false;
+<<<<<<< HEAD
         selectedValue = selectedValue || '';
+=======
+        var isMultiple = $select.prop('multiple');
+        var selectedValues = normalizeServiceValues(Array.isArray(selectedValue) ? selectedValue : (selectedValue ? [selectedValue] : []));
+        var selectedLookup = {};
+
+        selectedValues.forEach(function(name) {
+            selectedLookup[name.toLowerCase()] = true;
+        });
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         
         $select.empty();
         
@@ -996,7 +1130,11 @@ jQuery(document).ready(function($) {
         }
         
         $select.prop('disabled', false);
+<<<<<<< HEAD
         if (includePlaceholder) {
+=======
+        if (!isMultiple && includePlaceholder) {
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             $select.append('<option value="">' + serviceSelectPlaceholder + '</option>');
         }
         
@@ -1005,14 +1143,29 @@ jQuery(document).ready(function($) {
                 return;
             }
             var option = $('<option>', { value: name, text: name });
+<<<<<<< HEAD
             if (selectedValue && name.toLowerCase() === selectedValue.toLowerCase()) {
                 option.attr('selected', 'selected');
+=======
+            if (selectedLookup[name.toLowerCase()]) {
+                option.prop('selected', true);
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             }
             $select.append(option);
         });
         
+<<<<<<< HEAD
         if (selectedValue && !$select.val()) {
             $select.append($('<option>', { value: selectedValue, text: selectedValue, selected: true }));
+=======
+        if (!isMultiple && selectedValues.length && !$select.val()) {
+            $select.append($('<option>', { value: selectedValues[0], text: selectedValues[0], selected: true }));
+            return;
+        }
+
+        if (isMultiple && selectedValues.length) {
+            $select.val(selectedValues);
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         }
     }
     
@@ -1101,7 +1254,12 @@ jQuery(document).ready(function($) {
             success: function(response) {
                 if (response.success && response.data && response.data.service_names) {
                     serviceNames = response.data.service_names;
+<<<<<<< HEAD
                     populateServiceDropdown($serviceSelect, '');
+=======
+                    var selectedMainServices = getSelectedServiceNames($serviceSelect);
+                    populateServiceDropdown($serviceSelect, selectedMainServices, false);
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                     $('.xtremecleans-inline-service-select').each(function() {
                         var current = $(this).val();
                         populateServiceDropdown($(this), current, true);
@@ -1135,17 +1293,31 @@ jQuery(document).ready(function($) {
     }
     
     setZoneNames(zoneNames, '');
+<<<<<<< HEAD
     populateServiceDropdown($serviceSelect, '');
     resetServicePreview();
     
     $serviceSelect.on('change', function() {
         var selected = $(this).val();
         loadServicePreview(selected);
+=======
+    populateServiceDropdown($serviceSelect, [], false);
+    resetServicePreview();
+    
+    $serviceSelect.on('change', function() {
+        var selectedValues = getSelectedServiceNames($(this));
+        loadServicePreview(selectedValues.length ? selectedValues[0] : '');
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
     });
     
     $serviceRefreshBtn.on('click', function() {
         refreshServiceNames(function() {
+<<<<<<< HEAD
             loadServicePreview($serviceSelect.val());
+=======
+            var selectedValues = getSelectedServiceNames($serviceSelect);
+            loadServicePreview(selectedValues.length ? selectedValues[0] : '');
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         });
     });
     
@@ -1221,20 +1393,50 @@ jQuery(document).ready(function($) {
             return;
         }
         
+<<<<<<< HEAD
         var selectedServiceName = $serviceSelect.length ? ($serviceSelect.val() || '') : '';
         if ($serviceSelect.length && !$serviceSelect.prop('disabled') && !selectedServiceName) {
+=======
+        var selectedServiceNames = $serviceSelect.length ? getSelectedServiceNames($serviceSelect) : [];
+        if ($serviceSelect.length && !$serviceSelect.prop('disabled') && !selectedServiceNames.length) {
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             showNotice(serviceSelectRequiredMessage, 'error');
             $submitBtn.prop('disabled', false).text(originalText);
             return;
         }
+<<<<<<< HEAD
+=======
+
+        var zipResult = parseZipCodes($('#zip_code').val());
+        if (!zipResult.values.length) {
+            showNotice(zipCodeRequiredMessage, 'error');
+            $submitBtn.prop('disabled', false).text(originalText);
+            return;
+        }
+
+        if (zipResult.invalid.length) {
+            showNotice(zipCodeInvalidMessage + ' (' + zipResult.invalid.join(', ') + ')', 'error');
+            $submitBtn.prop('disabled', false).text(originalText);
+            return;
+        }
+
+        var servicePayload = isUpdate ? (selectedServiceNames[0] || '') : selectedServiceNames;
+        var zipPayload = isUpdate ? (zipResult.values[0] || '') : zipResult.values;
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         
         // Get form data
         var formData = {
             action: isUpdate ? 'xtremecleans_update_zip_zone' : 'xtremecleans_add_zip_zone',
             nonce: nonce,
+<<<<<<< HEAD
             service_name: selectedServiceName,
             zone_name: $('#zone_name').val(),
             zip_code: $('#zip_code').val(),
+=======
+            service_name: servicePayload,
+            zone_name: $('#zone_name').val(),
+            zip_code: zipPayload,
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             zone_area: $('#zone_area').val(),
             county: $('#county').val() || '',
             state: $('#state').val() || '',
@@ -1254,9 +1456,20 @@ jQuery(document).ready(function($) {
                 if (response.success) {
                     // Reset form
                     resetForm();
+<<<<<<< HEAD
                     
                     // Add new row to table smoothly
                     if (response.data.zone && !isUpdate) {
+=======
+                    showNotice(response.data && response.data.message ? response.data.message : 'Saved successfully.', 'success');
+                    
+                    // Add new row to table smoothly
+                    if (!isUpdate && response.data && Array.isArray(response.data.zones) && response.data.zones.length) {
+                        response.data.zones.forEach(function(zone) {
+                            addZoneRowToTable(zone);
+                        });
+                    } else if (response.data.zone && !isUpdate) {
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                         addZoneRowToTable(response.data.zone);
                     } else if (isUpdate && response.data.zone) {
                         updateZoneRowInTable(response.data.zone);
@@ -1474,8 +1687,13 @@ jQuery(document).ready(function($) {
     function resetForm() {
         $('#zone_id').val('');
         if ($serviceSelect.length) {
+<<<<<<< HEAD
             populateServiceDropdown($serviceSelect, '');
             $serviceSelect.val('');
+=======
+            populateServiceDropdown($serviceSelect, [], false);
+            $serviceSelect.val([]);
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         }
         $('#zone_name').val('');
         $('#zip_code').val('');
@@ -1709,10 +1927,14 @@ jQuery(document).ready(function($) {
     
     // ZIP code input validation
     $('#zip_code').on('input', function() {
+<<<<<<< HEAD
         this.value = this.value.replace(/[^0-9]/g, '');
         if (this.value.length > 5) {
             this.value = this.value.slice(0, 5);
         }
+=======
+        this.value = this.value.replace(/[^0-9,\n\r;\s]/g, '');
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
     });
 });
 </script>

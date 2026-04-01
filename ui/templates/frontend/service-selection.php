@@ -76,7 +76,11 @@ if (!defined('ABSPATH')) {
                     </div>
                     
                     <!-- Minimum Service Charge Notice -->
+<<<<<<< HEAD
                     <div class="xtremecleans-minimum-service-charge-notice" style="display: none;">
+=======
+                    <!-- <div class="xtremecleans-minimum-service-charge-notice" style="display: none;">
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                         <div class="xtremecleans-minimum-charge-content">
                             <span class="xtremecleans-minimum-charge-icon">ℹ️</span>
                             <div class="xtremecleans-minimum-charge-text">
@@ -84,7 +88,11 @@ if (!defined('ABSPATH')) {
                                 <p class="xtremecleans-minimum-charge-description">Please select services that total at least this amount.</p>
                             </div>
                         </div>
+<<<<<<< HEAD
                     </div>
+=======
+                    </div> -->
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                     
                     <!-- Minimum Service Charge Warning (shown when services < minimum) -->
                     <div class="xtremecleans-minimum-charge-warning" style="display: none;">
@@ -104,12 +112,20 @@ if (!defined('ABSPATH')) {
                         <div class="xtremecleans-popup-overlay-backdrop"></div>
                         <div class="xtremecleans-popup-modal xtremecleans-minimum-charge-popup">
                             <div class="xtremecleans-popup-header">
+<<<<<<< HEAD
                                 <h3 class="xtremecleans-popup-title">Minimum Service Charge Required</h3>
+=======
+                                <h3 class="xtremecleans-popup-title"><?php echo isset($minimum_charge_title) ? esc_html($minimum_charge_title) : 'Minimum Service Charge Required'; ?></h3>
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                                 <button type="button" class="xtremecleans-popup-close" aria-label="Close">&times;</button>
                             </div>
                             <div class="xtremecleans-popup-content">
                                 <div class="xtremecleans-popup-icon-wrapper">
+<<<<<<< HEAD
                                     <span class="xtremecleans-popup-icon">⚠️</span>
+=======
+                                    <span class="xtremecleans-popup-icon"><?php echo isset($minimum_charge_icon) ? $minimum_charge_icon : '⚠️'; ?></span>
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                                 </div>
                                 <div class="xtremecleans-popup-message">
                                     <p class="xtremecleans-popup-text" id="xtremecleans-popup-message-text">
@@ -126,36 +142,61 @@ if (!defined('ABSPATH')) {
                     </div>
                     
                     <div class="xtremecleans-estimated-total">
+<<<<<<< HEAD
                         <span class="xtremecleans-estimated-label">ESTIMATED TOTAL:</span>
                         <span class="xtremecleans-estimated-amount">$0.00</span>
+=======
+                        <span class="xtremecleans-estimated-label"><?php echo isset($estimated_total_label) ? esc_html($estimated_total_label) : 'ESTIMATED TOTAL:'; ?></span>
+                        <span class="xtremecleans-estimated-amount"><?php echo isset($estimated_total_amount) ? esc_html($estimated_total_amount) : '$0.00'; ?></span>
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                     </div>
                     
                     <!-- Job Duration Display -->
                     <div class="xtremecleans-job-duration-section">
+<<<<<<< HEAD
                         <span class="xtremecleans-job-duration-label">ESTIMATED DURATION:</span>
                         <span class="xtremecleans-job-duration">0 minutes</span>
+=======
+                        <span class="xtremecleans-job-duration-label"><?php echo isset($estimated_duration_label) ? esc_html($estimated_duration_label) : 'ESTIMATED DURATION:'; ?></span>
+                        <span class="xtremecleans-job-duration"><?php echo isset($estimated_duration) ? esc_html($estimated_duration) : '0 minutes'; ?></span>
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                         <span class="xtremecleans-job-duration-minutes" style="display: none;">0</span>
                     </div>
                     
                     <div class="xtremecleans-quote-lines">
+<<<<<<< HEAD
                         <div class="xtremecleans-quote-empty">Add services to build your quote.</div>
+=======
+                        <div class="xtremecleans-quote-empty"><?php echo isset($quote_empty_text) ? esc_html($quote_empty_text) : 'Add services to build your quote.'; ?></div>
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                     </div>
                 </div>
 
                 <!-- Deposit Section -->
                 <div class="xtremecleans-promo-section compact xtremecleans-deposit-section">
+<<<<<<< HEAD
                     <h3 class="xtremecleans-promo-title xtremecleans-deposit-title">Deposit: $20</h3>
                     <p class="xtremecleans-promo-description">A $20 payment is required to confirm your appointment.</p>
+=======
+                    <h3 class="xtremecleans-promo-title xtremecleans-deposit-title"><?php echo isset($deposit_title) ? esc_html($deposit_title) : 'Deposit: $20'; ?></h3>
+                    <p class="xtremecleans-promo-description"><?php echo isset($deposit_description) ? esc_html($deposit_description) : 'A $20 payment is required to confirm your appointment.'; ?></p>
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                 </div>
 
                 <div class="xtremecleans-estimate-details">
                     <div class="xtremecleans-estimate-header">
+<<<<<<< HEAD
                         <h3 class="xtremecleans-estimate-title">For a more accurate estimate, please check all that apply:</h3>
                         <span class="xtremecleans-estimate-arrow">▲</span>
+=======
+                        <h3 class="xtremecleans-estimate-title"><?php echo isset($estimate_title) ? esc_html($estimate_title) : 'For a more accurate estimate, please check all that apply:'; ?></h3>
+                        <span class="xtremecleans-estimate-arrow"><?php echo isset($estimate_arrow_icon) ? $estimate_arrow_icon : '▲'; ?></span>
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                     </div>
                     <div class="xtremecleans-estimate-checkboxes">
                         <label class="xtremecleans-checkbox-label">
                             <input type="checkbox" class="xtremecleans-checkbox" />
+<<<<<<< HEAD
                             <span>I do not have parking nearby.</span>
                         </label>
                         <label class="xtremecleans-checkbox-label">
@@ -168,6 +209,20 @@ if (!defined('ABSPATH')) {
                         </label>
                     </div>
                     <p class="xtremecleans-estimate-note">(If we need to park across or down the street, or clean above the 2nd floor, portable equipment may be required.)</p>
+=======
+                            <span><?php echo isset($estimate_checkbox1) ? esc_html($estimate_checkbox1) : 'I do not have parking nearby.'; ?></span>
+                        </label>
+                        <label class="xtremecleans-checkbox-label">
+                            <input type="checkbox" class="xtremecleans-checkbox" />
+                            <span><?php echo isset($estimate_checkbox2) ? esc_html($estimate_checkbox2) : 'Area is on 3rd floor or higher.'; ?></span>
+                        </label>
+                        <label class="xtremecleans-checkbox-label">
+                            <input type="checkbox" class="xtremecleans-checkbox" />
+                            <span><?php echo isset($estimate_checkbox3) ? esc_html($estimate_checkbox3) : 'I have guaranteed parking.'; ?></span>
+                        </label>
+                    </div>
+                    <p class="xtremecleans-estimate-note"><?php echo isset($estimate_note) ? esc_html($estimate_note) : '(If we need to park across or down the street, or clean above the 2nd floor, portable equipment may be required.)'; ?></p>
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                 </div>
             </div>
         </div>
@@ -301,9 +356,13 @@ if (!defined('ABSPATH')) {
                                 <input type="text" id="xtremecleans-info-address2" placeholder="Unit, Floor, etc." />
                             </label>
                         </div>
+<<<<<<< HEAD
 
                         
 
+=======
+                        
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                         <div class="xtremecleans-info-row xtremecleans-row-3">
                             <label>
                                 <span>Zip Code*</span>
@@ -323,10 +382,13 @@ if (!defined('ABSPATH')) {
                             <span>Special Instructions or Requests</span>
                             <textarea rows="4" id="xtremecleans-info-instructions" placeholder="Tell us the best way to access your home, pet instructions, parking notes, etc."></textarea>
                         </label>
+<<<<<<< HEAD
                         <label class="xtremecleans-checkbox-inline">
                             <input type="checkbox" />
                             <span>Sign up to receive occasional emails with promotional offers for future cleanings.</span>
                         </label>
+=======
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                     </div>
                 </div>
 

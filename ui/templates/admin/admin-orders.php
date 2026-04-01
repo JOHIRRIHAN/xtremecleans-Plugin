@@ -46,11 +46,33 @@ if (!defined('ABSPATH')) {
     margin-right: auto !important;
     float: none !important;
 }
+<<<<<<< HEAD
 </style>
 
 <div class="wrap xtremecleans-admin-wrap xtremecleans-orders-page">
     <div class="xtremecleans-page-header-nav">
         <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
+=======
+.xtremecleans-page-title {
+    font-size: 38px !important;
+    font-weight: 600 !important;
+    padding-top: 30px !important;
+}
+.xtremecleans-orders-actions {
+    display: block !important;
+    gap: 50px !important;
+}
+.xtremecleans-admin-wrap .button:not(.button-link):not(.button-link-delete) {
+    border-color: var(--xtremecleans-primary);
+    color: var(--xtremecleans-primary);
+    margin: 5px auto !important;
+}
+</style>
+
+<div class="wrap xtremecleans-admin-wrap xtremecleans-orders-page">
+    <h1 class="xtremecleans-page-title"><?php echo esc_html(get_admin_page_title()); ?></h1>
+    <div class="xtremecleans-page-header-nav">
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         <div class="xtremecleans-page-nav">
             <a href="<?php echo esc_url(admin_url('admin.php?page=xtremecleans')); ?>" class="xtremecleans-nav-link"><?php esc_html_e('Dashboard', 'xtremecleans'); ?></a>
             <span class="xtremecleans-nav-separator">|</span>
@@ -71,6 +93,7 @@ if (!defined('ABSPATH')) {
             <a href="<?php echo esc_url(admin_url('admin.php?page=xtremecleans-api-test')); ?>" class="xtremecleans-nav-link"><?php esc_html_e('API Test', 'xtremecleans'); ?></a>
         </div>
         <div class="xtremecleans-orders-actions">
+<<<<<<< HEAD
             <button type="button" class="button button-secondary" id="test-jobber-connection">
                 <span class="dashicons dashicons-admin-links"></span> <?php esc_html_e('Test Jobber', 'xtremecleans'); ?>
             </button>
@@ -78,6 +101,15 @@ if (!defined('ABSPATH')) {
                 <span class="dashicons dashicons-update"></span> <?php esc_html_e('Refresh', 'xtremecleans'); ?>
             </button>
             <button type="button" class="button button-primary" id="export-orders">
+=======
+            <button type="button" class="button button-secondary" id="test-jobber-connection" style="background: none !important;">
+                <span class="dashicons dashicons-admin-links"></span>
+            </button>
+            <button type="button" class="button button-secondary" id="refresh-orders" style="background: none !important;">
+                <span class="dashicons dashicons-update"></span> <?php esc_html_e('Refresh', 'xtremecleans'); ?>
+            </button>
+            <button type="button" class="button button-primary" id="export-orders" style="background: none !important;">
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                 <span class="dashicons dashicons-download"></span> <?php esc_html_e('Export CSV', 'xtremecleans'); ?>
             </button>
         </div>
@@ -376,7 +408,11 @@ if (!defined('ABSPATH')) {
                                                 data-order-status="<?php echo esc_attr($sync_status); ?>"
                                                 title="<?php esc_attr_e('Push Quote & Job to Jobber CRM', 'xtremecleans'); ?>">
                                             <span class="dashicons dashicons-cloud-upload"></span>
+<<<<<<< HEAD
                                             <span class="button-text"><?php esc_html_e('Push to Jobber', 'xtremecleans'); ?></span>
+=======
+                                            <span class="button-text"><?php esc_html_e('', 'xtremecleans'); ?></span>
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                                         </button>
                                         <button type="button" 
                                                 class="button button-small button-link-delete delete-order" 

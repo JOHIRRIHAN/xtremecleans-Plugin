@@ -226,6 +226,16 @@ class XtremeCleans_Frontend {
             wp_safe_redirect(admin_url('admin.php?page=xtremecleans-settings&jobber_oauth=error'));
             exit;
         }
+<<<<<<< HEAD
+=======
+
+        // Prevent OAuth CSRF by requiring a valid nonce-backed state value.
+        if (empty($state) || !wp_verify_nonce($state, 'xtremecleans_jobber_oauth_state')) {
+            set_transient('xtremecleans_jobber_oauth_error', 'Invalid OAuth state. Please try authorizing again.', HOUR_IN_SECONDS);
+            wp_safe_redirect(admin_url('admin.php?page=xtremecleans-settings&jobber_oauth=error'));
+            exit;
+        }
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         
         $token_response = $this->exchange_jobber_code_for_token($code);
         if (is_wp_error($token_response)) {
@@ -303,7 +313,11 @@ class XtremeCleans_Frontend {
         $body = wp_remote_retrieve_body($response);
         $data = json_decode($body, true);
         
+<<<<<<< HEAD
         xtremecleans_log('Jobber token exchange response: Status ' . $status . ', Body: ' . $body, 'info');
+=======
+        xtremecleans_log('Jobber token exchange response status: ' . $status, 'info');
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         
         if ($status >= 200 && $status < 300 && isset($data['access_token'])) {
             update_option('xtremecleans_jobber_access_token', sanitize_text_field($data['access_token']));
@@ -317,6 +331,12 @@ class XtremeCleans_Frontend {
                 update_option('xtremecleans_jobber_token_expires', 0);
             }
             
+<<<<<<< HEAD
+=======
+            // Clear cached availability so new token fetches fresh data
+            delete_transient('xtremecleans_jobber_availability');
+            
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             // Log token scopes if available (for debugging)
             if (isset($data['scope'])) {
                 xtremecleans_log('Jobber token received with scopes: ' . $data['scope'], 'info');
@@ -329,7 +349,11 @@ class XtremeCleans_Frontend {
                 update_option('xtremecleans_jobber_token_scopes', sanitize_text_field($requested_scopes));
             }
             
+<<<<<<< HEAD
             xtremecleans_log('Jobber OAuth tokens saved successfully. Access token: ' . substr($data['access_token'], 0, 20) . '...', 'info');
+=======
+            xtremecleans_log('Jobber OAuth tokens saved successfully.', 'info');
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             return $data;
         }
         
@@ -432,8 +456,22 @@ class XtremeCleans_Frontend {
             }
             if (isset($data['expires_in'])) {
                 update_option('xtremecleans_jobber_token_expires', time() + absint($data['expires_in']));
+<<<<<<< HEAD
             }
             
+=======
+            } else {
+                // Default: assume 2-hour expiry if Jobber doesn't provide expires_in
+                update_option('xtremecleans_jobber_token_expires', time() + 7200);
+            }
+            
+            // Log the full response keys for debugging
+            xtremecleans_log('Jobber token refresh response keys: ' . implode(', ', array_keys($data)), 'debug');
+            
+            // Clear cached availability so refreshed token fetches fresh data
+            delete_transient('xtremecleans_jobber_availability');
+            
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             // Update scopes if provided in refresh response
             if (isset($data['scope'])) {
                 update_option('xtremecleans_jobber_token_scopes', sanitize_text_field($data['scope']));

@@ -1,3 +1,80 @@
+<<<<<<< HEAD
+=======
+/* Unified style for dashboard action buttons */
+.xtremecleans-orders-actions .button,
+.xtremecleans-leads-actions .button {
+    background: #4caf50 !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 10px 24px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    border-radius: 6px !important;
+    box-shadow: 0 2px 8px rgba(76,175,80,0.08);
+    margin-right: 12px;
+    transition: background 0.2s;
+}
+.xtremecleans-orders-actions .button:hover,
+.xtremecleans-leads-actions .button:hover {
+    background: #388e3c !important;
+    color: #fff !important;
+}
+.xtremecleans-stat-card .stat-content h3 {
+    margin: 0 0 5px;
+    font-size: 28px;
+    text-align: center;
+    font-weight: 700;
+    color: #fff;
+}
+/* Center stat cards and content */
+.xtremecleans-stats-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    margin-bottom: 32px;
+}
+.xtremecleans-stat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.xtremecleans-stat-card .stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+.xtremecleans-stat-card .stat-content h3,
+.xtremecleans-stat-card .stat-content p {
+    text-align: center;
+}
+/* Consistent header layout for all admin pages */
+.xtremecleans-page-header-nav, .xtremecleans-orders-header, .xtremecleans-leads-header, .xtremecleans-page-header {
+    display: block;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--xtremecleans-spacing-2xl);
+    margin-bottom: var(--xtremecleans-spacing-xl);
+    padding: var(--xtremecleans-spacing-xl) 0;
+    box-sizing: border-box;
+    width: 100%;
+}
+/* Service Items Table Section Centered and Constrained */
+.wrap.xtremecleans-service-items-page .xtremecleans-service-items-table-section,
+.xtremecleans-service-items-page.wrap .xtremecleans-service-items-table-section,
+.wrap .xtremecleans-service-items-table-section,
+.xtremecleans-service-items-page .xtremecleans-service-items-table-section {
+    max-width: 900px !important;
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+}
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
 /**
  * XtremeCleans Admin Styles
  */
@@ -60,7 +137,11 @@ body:has(.xtremecleans-service-items-page) #wpbody-content,
 }
 
 .sync-to-jobber.button-primary {
+<<<<<<< HEAD
     background: #4caf50 !important;
+=======
+    background: #000000 !important;
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
     border-color: #4caf50 !important;
     color: #fff !important;
 }
@@ -81,6 +162,10 @@ body:has(.xtremecleans-service-items-page) #wpbody-content,
     display: flex;
     align-items: center;
     gap: 5px;
+<<<<<<< HEAD
+=======
+    justify-content: center;
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
     flex-wrap: wrap;
 }
 
@@ -536,6 +621,7 @@ html body.wp-admin:has(.xtremecleans-zip-zone-page) #wpbody-content {
 }
 
 .xtremecleans-shortcode-item {
+<<<<<<< HEAD
     background: #fff;
     border: 1px solid #ccd0d4;
     border-radius: 4px;
@@ -547,6 +633,19 @@ html body.wp-admin:has(.xtremecleans-zip-zone-page) #wpbody-content {
     margin: 0 0 10px 0;
     font-size: 20px;
     color: var(--xtremecleans-primary);
+=======
+    background: var(--xtremecleans-primary) ! important;;
+    color: #fff;
+    border: 1px solid var(--xtremecleans-primary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+}
+    .button-link-delete:hover {
+    background: var(--xtremecleans-primary-dark);
+    color: #fff;
+    border-color: var(--xtremecleans-primary-dark);
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
 }
 
 .xtremecleans-shortcode-item .description {
@@ -681,7 +780,11 @@ html body.wp-admin .wrap.xtremecleans-service-items-page,
 .xtremecleans-service-items-page.wrap .xtremecleans-service-items-table-section,
 .wrap .xtremecleans-service-items-table-section,
 .xtremecleans-service-items-page .xtremecleans-service-items-table-section {
+<<<<<<< HEAD
     max-width: 500px !important;
+=======
+    max-width: 900px !important;
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
     width: 100% !important;
     margin-left: auto !important;
     margin-right: auto !important;
@@ -956,7 +1059,11 @@ html body.wp-admin .wrap.xtremecleans-service-items-page,
 }
 
 .xtremecleans-service-items-table-section {
+<<<<<<< HEAD
     max-width: 500px !important;
+=======
+    max-width: 900px !important;
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
     width: 100% !important;
     margin: 0 auto !important;
     background: var(--xtremecleans-bg-primary);
@@ -996,7 +1103,11 @@ html body.wp-admin .wrap.xtremecleans-service-items-page,
 }
 
 .xtremecleans-service-items-page .xtremecleans-service-items-table-section {
+<<<<<<< HEAD
     max-width: 500px !important;
+=======
+    max-width: 900px !important;
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
     width: 100% !important;
     margin-left: auto !important;
     margin-right: auto !important;

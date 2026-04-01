@@ -45,11 +45,49 @@ if (!defined('ABSPATH')) {
     margin-right: auto !important;
     float: none !important;
 }
+<<<<<<< HEAD
 </style>
 
 <div class="wrap xtremecleans-admin-wrap">
     <div class="xtremecleans-page-header-nav">
         <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
+=======
+.xtremecleans-page-title {
+    font-size: 38px !important;
+    font-weight: 600 !important;
+    padding-top: 30px !important;
+}
+.xtremecleans-api-result {
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+.xtremecleans-api-result.success {
+    background-color: #d4edda;
+    border-left: 4px solid #4caf50;
+    color: #155724;
+}
+.xtremecleans-api-result.error {
+    background-color: #f8d7da;
+    border-left: 4px solid #f44336;
+    color: #721c24;
+}
+.xtremecleans-code-block {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.5;
+}
+</style>
+
+<div class="wrap xtremecleans-admin-wrap">
+    <h1 class="xtremecleans-page-title"><?php echo esc_html(get_admin_page_title()); ?></h1>
+    <div class="xtremecleans-page-header-nav">
+
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         <div class="xtremecleans-page-nav">
             <a href="<?php echo esc_url(admin_url('admin.php?page=xtremecleans')); ?>" class="xtremecleans-nav-link"><?php esc_html_e('Dashboard', 'xtremecleans'); ?></a>
             <span class="xtremecleans-nav-separator">|</span>

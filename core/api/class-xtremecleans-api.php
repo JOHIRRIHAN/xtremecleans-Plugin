@@ -65,6 +65,7 @@ class XtremeCleans_API {
                 xtremecleans_log('Access token expiring soon or expired. Refreshing token...', 'info');
                 
                 // Load frontend class to use refresh method
+<<<<<<< HEAD
                 if (file_exists(XTREMECLEANS_PLUGIN_DIR . 'core/frontend/class-xtremecleans-frontend.php')) {
                     require_once XTREMECLEANS_PLUGIN_DIR . 'core/frontend/class-xtremecleans-frontend.php';
                     $frontend = XtremeCleans::get_instance()->frontend;
@@ -75,6 +76,22 @@ class XtremeCleans_API {
                             xtremecleans_log('Token refreshed successfully', 'info');
                         } else {
                             xtremecleans_log('Token refresh failed: ' . (is_wp_error($refresh_result) ? $refresh_result->get_error_message() : 'Unknown error'), 'error');
+=======
+                // NOTE: Do NOT call XtremeCleans::get_instance() here — it causes infinite recursion
+                // during plugin initialization (get_instance → load_dependencies → new API → refresh_credentials → get_instance...)
+                if (file_exists(XTREMECLEANS_PLUGIN_DIR . 'core/frontend/class-xtremecleans-frontend.php')) {
+                    require_once XTREMECLEANS_PLUGIN_DIR . 'core/frontend/class-xtremecleans-frontend.php';
+                    if (class_exists('XtremeCleans_Frontend')) {
+                        $frontend = new XtremeCleans_Frontend();
+                        if (method_exists($frontend, 'refresh_access_token')) {
+                            $refresh_result = $frontend->refresh_access_token();
+                            if (!is_wp_error($refresh_result) && isset($refresh_result['access_token'])) {
+                                $access_token = $refresh_result['access_token'];
+                                xtremecleans_log('Token refreshed successfully', 'info');
+                            } else {
+                                xtremecleans_log('Token refresh failed: ' . (is_wp_error($refresh_result) ? $refresh_result->get_error_message() : 'Unknown error'), 'error');
+                            }
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                         }
                     }
                 }

@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: XtremeCleans
- * Plugin URI: https://example.com/xtremecleans
+ * Plugin URI: https://xtremecleans.com
  * Description: A professional WordPress plugin with shortcodes, API integrations, and frontend features.
  * Version: 1.1.0
- * Author: Your Name
- * Author URI: https://example.com
+ * Author: Johir Rihan
+ * Author URI: https://johirrihan.com
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: xtremecleans

@@ -51,11 +51,24 @@ if (!empty($service_items)) {
     margin-left: auto !important;
     margin-right: auto !important;
 }
+<<<<<<< HEAD
 </style>
 <div class="wrap xtremecleans-service-items-page">
     <div class="xtremecleans-page-header-nav">
         <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
         <div class="xtremecleans-page-nav">
+=======
+.xtremecleans-page-title {
+    font-size: 38px !important;
+    font-weight: 600 !important;
+    padding-top: 30px !important;
+}
+</style>
+<div class="wrap xtremecleans-service-items-page">
+            <h1 class="xtremecleans-page-title"><?php echo esc_html(get_admin_page_title()); ?></h1>
+    <div class="xtremecleans-page-header-nav" style="display: block; align-items: center; gap: 32px; margin-bottom: 24px;">
+        <div class="xtremecleans-page-nav" style="flex: 1;">
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             <a href="<?php echo esc_url(admin_url('admin.php?page=xtremecleans')); ?>" class="xtremecleans-nav-link"><?php esc_html_e('Dashboard', 'xtremecleans'); ?></a>
             <span class="xtremecleans-nav-separator">|</span>
             <a href="<?php echo esc_url(admin_url('admin.php?page=xtremecleans-orders')); ?>" class="xtremecleans-nav-link"><?php esc_html_e('Orders', 'xtremecleans'); ?></a>
@@ -72,10 +85,18 @@ if (!empty($service_items)) {
             <span class="xtremecleans-nav-separator">|</span>
             <a href="<?php echo esc_url(admin_url('admin.php?page=xtremecleans-api-test')); ?>" class="xtremecleans-nav-link"><?php esc_html_e('API Test', 'xtremecleans'); ?></a>
         </div>
+<<<<<<< HEAD
     </div>
     
     <!-- Add New Service Item Form Section -->
     <div class="xtremecleans-add-service-item-form-section">
+=======
+
+    </div>
+    
+    <!-- Add New Service Item Form Section -->
+    <div class="xtremecleans-add-service-item-form-section" style="width:100%;margin-left:0;">
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         <div class="xtremecleans-form-header">
             <h2><?php esc_html_e('Add New Service Item', 'xtremecleans'); ?></h2>
         </div>
@@ -107,6 +128,14 @@ if (!empty($service_items)) {
                     <button type="button" id="xtremecleans-add-item-row" class="button button-small" style="margin-top:8px;">
                         <?php esc_html_e('+ Add Another Item', 'xtremecleans'); ?>
                     </button>
+<<<<<<< HEAD
+=======
+                    <div class="xtremecleans-form-field" style="margin-top:16px;">
+                        <label for="service_item_duration">Estimated Duration (minutes) <span class="required">*</span></label>
+                        <input type="number" name="service_item_duration" id="service_item_duration" class="xtremecleans-input" min="1" step="1" placeholder="e.g., 90" required>
+                        <p class="description">Set the estimated time required for this service item.</p>
+                    </div>
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                 </div>
             </div>
             
@@ -123,7 +152,11 @@ if (!empty($service_items)) {
     </div>
     
     <!-- Service Items Section -->
+<<<<<<< HEAD
     <div class="xtremecleans-service-items-table-section">
+=======
+    <div class="xtremecleans-service-items-table-section" style="width:100%;margin-left:0;">
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
         <div class="xtremecleans-table-header">
             <h2><?php esc_html_e('All Service Items', 'xtremecleans'); ?></h2>
         </div>
@@ -168,6 +201,10 @@ if (!empty($service_items)) {
                                 <span><?php esc_html_e('Clean Price', 'xtremecleans'); ?></span>
                                 <span><?php esc_html_e('Protect Price', 'xtremecleans'); ?></span>
                                 <span><?php esc_html_e('Deodorize Price', 'xtremecleans'); ?></span>
+<<<<<<< HEAD
+=======
+                                <span><?php esc_html_e('Estimated Duration', 'xtremecleans'); ?></span>
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                                 <span><?php esc_html_e('Actions', 'xtremecleans'); ?></span>
                             </div>
                             <div class="xtremecleans-service-group-body">
@@ -188,6 +225,12 @@ if (!empty($service_items)) {
                                         <div class="xtremecleans-service-group-cell price">
                                             $<?php echo esc_html(number_format((float)(isset($item['price3_value']) ? $item['price3_value'] : $item['deodorize_price']), 2)); ?>
                                         </div>
+<<<<<<< HEAD
+=======
+                                        <div class="xtremecleans-service-group-cell duration">
+                                            <?php echo isset($item['service_item_duration']) ? esc_html($item['service_item_duration']) . ' min' : '-'; ?>
+                                        </div>
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
                                         <div class="xtremecleans-service-group-cell actions">
                                             <button type="button" class="xtremecleans-edit-service-item-btn button button-small" 
                                                     data-id="<?php echo esc_attr($item['id']); ?>"
@@ -372,7 +415,12 @@ jQuery(function($) {
                 item_description: $row.find('.xtremecleans-item-description-input').val() || '',
                 price1_value: $row.find('.xtremecleans-item-price1-input').val() || '0.00',
                 price2_value: $row.find('.xtremecleans-item-price2-input').val() || '0.00',
+<<<<<<< HEAD
                 price3_value: $row.find('.xtremecleans-item-price3-input').val() || '0.00'
+=======
+                price3_value: $row.find('.xtremecleans-item-price3-input').val() || '0.00',
+                service_item_duration: $row.find('.xtremecleans-item-duration-input').val() || $('#service_item_duration').val() || null
+>>>>>>> 3378c4f (plugin last vertation updated in admin dashboard)
             });
         });
         
